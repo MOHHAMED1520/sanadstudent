@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الأدوات المجانية | منصة سند التعليمية</title>
+  <meta name="description" content="أدوات مجانية للطلاب — تحويل صور إلى PDF، حاسبة GPA، مؤقت بومودورو، ترجمة، QR Code وعداد كلمات">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    .page-hero { background: linear-gradient(145deg, #060e1f 0%, #0c2240 50%, #0d3d3d 100%); }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 28px; max-width: 1200px; margin: 0 auto; }
+    .tool-panel { background: white; border-radius: 24px; border: 1.5px solid var(--border); box-shadow: var(--shadow-sm); overflow: hidden; transition: all 0.3s; }
+    .tool-panel:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .tool-header { padding: 20px 24px; display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); }
+    .tool-icon-big { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+    .tool-name { font-size: 16px; font-weight: 900; color: var(--primary); }
+    .tool-desc-short { font-size: 12.5px; color: var(--text-muted); margin-top: 2px; }
+    .tool-body { padding: 22px 24px; }
+    .tool-input { width: 100%; padding: 10px 16px; border: 1.5px solid var(--border); border-radius: 12px; font-size: 13.5px; font-family: var(--font); outline: none; transition: border 0.2s; direction: rtl; }
+    .tool-input:focus { border-color: var(--primary-light); box-shadow: 0 0 0 3px rgba(37,84,160,0.08); }
+    .tool-btn { background: var(--grad-primary); color: white; border: none; padding: 10px 22px; border-radius: 30px; font-size: 13.5px; font-weight: 800; cursor: pointer; font-family: var(--font); transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; }
+    .tool-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .tool-btn.green { background: linear-gradient(135deg,#10b981,#059669); }
+    .tool-btn.blue { background: linear-gradient(135deg,#2563eb,#1d4ed8); }
+    .tool-btn.red { background: linear-gradient(135deg,#ef4444,#dc2626); }
+    .tool-btn.purple { background: linear-gradient(135deg,#7c3aed,#5b21b6); }
+    .tool-result { background: var(--bg-gray); border-radius: 12px; padding: 14px 16px; margin-top: 14px; font-size: 13.5px; color: var(--text-dark); min-height: 48px; border: 1px solid var(--border); display: none; }
+    .tool-result.show { display: block; }
+    .gpa-row { display: flex; gap: 10px; margin-bottom: 8px; }
+    .gpa-row input { flex: 1; padding: 8px 12px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 13px; font-family: var(--font); outline: none; }
+    .gpa-row input:focus { border-color: var(--primary-light); }
+    .pomodoro-timer { font-size: 60px; font-weight: 900; color: var(--primary); text-align: center; margin: 16px 0 10px; font-variant-numeric: tabular-nums; }
+    .pom-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .pom-status { text-align: center; font-size: 13px; font-weight: 700; color: var(--text-muted); margin-bottom: 10px; }
+    .qr-result { text-align: center; margin-top: 14px; }
+    .qr-result img { max-width: 180px; border-radius: 12px; border: 1px solid var(--border); }
+    .wc-stats { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+    .wc-stat { background: var(--accent); border-radius: 10px; padding: 8px 16px; font-size: 12.5px; font-weight: 800; color: var(--primary); }
+    .file-drop { border: 2.5px dashed var(--border); border-radius: 16px; padding: 30px; text-align: center; cursor: pointer; transition: all 0.3s; margin-bottom: 12px; }
+    .file-drop:hover, .file-drop.drag-over { border-color: var(--primary-light); background: var(--accent); }
+    .file-drop-icon { font-size: 36px; margin-bottom: 8px; }
+    .file-drop-text { font-size: 13.5px; color: var(--text-muted); font-weight: 600; }
+    .file-list { font-size: 12.5px; color: var(--text-muted); margin-top: 8px; }
+    .page-hero-inner { max-width: 1200px; margin: 0 auto; padding: 70px 30px 90px; text-align: center; position: relative; z-index: 1; }
+    .page-hero h1 { font-size: clamp(28px, 4.5vw, 52px); font-weight: 900; color: white; margin-bottom: 14px; line-height: 1.2; }
+    .page-hero h1 span { color: #6ee7b7; }
+    .page-hero p { font-size: 16px; color: rgba(255,255,255,0.72); max-width: 560px; margin: 0 auto 32px; line-height: 1.8; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; justify-content: center; margin-bottom: 22px; flex-wrap: wrap; }
+    .breadcrumb a, .breadcrumb span { font-size: 12.5px; color: rgba(255,255,255,0.55); font-weight: 600; }
+    .breadcrumb a:hover { color: #6ee7b7; }
+    .breadcrumb .sep { color: rgba(255,255,255,0.3); }
+    .free-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.35); color: #6ee7b7; padding: 7px 20px; border-radius: 30px; font-size: 12.5px; font-weight: 700; margin-bottom: 24px; }
+    @media (max-width: 768px) { .tools-grid { grid-template-columns: 1fr; } .page-hero-inner { padding: 50px 20px 60px; } }
+  </style>
+</head>
+<body>
+<div id="header-placeholder" data-page="tools"></div>
+
+<section class="page-hero">
+  <div class="hero-bg"><div class="orb orb-1" style="background:#10b981;"></div><div class="orb orb-2" style="background:#0ea5e9;"></div><div class="grid-pattern"></div></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">🏠 الرئيسية</a><span class="sep">›</span>
+      <span style="color:#6ee7b7;">الأدوات المجانية</span>
+    </div>
+    <div class="free-badge"><span>🧰</span> مجانية بالكامل — لا تسجيل مطلوب</div>
+    <h1>أدوات مجانية <span>تساعد الطلاب</span> يومياً</h1>
+    <p>مجموعة أدوات ذكية تعمل مباشرة من متصفحك بدون إنشاء حساب أو دفع أي رسوم</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 20px;font-size:13px;color:rgba(255,255,255,0.8);font-weight:700;">🖼️ تحويل PDF</div>
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 20px;font-size:13px;color:rgba(255,255,255,0.8);font-weight:700;">📊 حاسبة GPA</div>
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 20px;font-size:13px;color:rgba(255,255,255,0.8);font-weight:700;">⏳ بومودورو</div>
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 20px;font-size:13px;color:rgba(255,255,255,0.8);font-weight:700;">🌍 ترجمة</div>
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 20px;font-size:13px;color:rgba(255,255,255,0.8);font-weight:700;">🔗 QR Code</div>
+      <div style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:10px 20px;font-size:13px;color:rgba(255,255,255,0.8);font-weight:700;">📝 عداد كلمات</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="section section-alt">
+  <div class="section-header reveal">
+    <div class="section-chip">🧰 الأدوات المتاحة</div>
+    <h2 class="section-title">6 أدوات مجانية لكل طالب</h2>
+    <p class="section-subtitle">اختر الأداة المناسبة وابدأ استخدامها فورًا بدون أي تعقيد</p>
+  </div>
+
+  <div class="tools-grid">
+
+    <!-- WORD COUNT -->
+    <div class="tool-panel reveal reveal-delay-1" id="wordcount">
+      <div class="tool-header">
+        <div class="tool-icon-big" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">📝</div>
+        <div>
+          <div class="tool-name">عداد الكلمات والأحرف</div>
+          <div class="tool-desc-short">عدّ الكلمات والجمل والأحرف فورياً</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <textarea id="wc-input" class="tool-input" rows="6" placeholder="الصق نصك هنا ثم اضغط عدّ..." oninput="countWords()"></textarea>
+        <div class="wc-stats" id="wc-stats">
+          <div class="wc-stat">الكلمات: <span id="wc-words">0</span></div>
+          <div class="wc-stat">الأحرف: <span id="wc-chars">0</span></div>
+          <div class="wc-stat">الجمل: <span id="wc-sentences">0</span></div>
+          <div class="wc-stat">الفقرات: <span id="wc-paragraphs">0</span></div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:10px;">
+          <button class="tool-btn purple" onclick="countWords()"><i class="fas fa-calculator"></i> عدّ</button>
+          <button class="tool-btn" style="background:#6b7280;" onclick="document.getElementById('wc-input').value='';countWords()"><i class="fas fa-trash"></i> مسح</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- GPA CALCULATOR -->
+    <div class="tool-panel reveal reveal-delay-2" id="gpa">
+      <div class="tool-header">
+        <div class="tool-icon-big" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">📊</div>
+        <div>
+          <div class="tool-name">حاسبة المعدل التراكمي GPA</div>
+          <div class="tool-desc-short">أضف موادك واحسب معدلك فورياً</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div style="font-size:12px;font-weight:700;color:var(--text-muted);margin-bottom:8px;">المادة — الساعات — الدرجة (مثال: A=4, B+=3.5, B=3)</div>
+        <div id="gpa-rows">
+          <div class="gpa-row"><input placeholder="اسم المادة" class="gpa-name"><input type="number" placeholder="الساعات" class="gpa-hours" min="1" max="6"><input type="number" placeholder="4.0" class="gpa-grade" step="0.5" min="0" max="4"></div>
+          <div class="gpa-row"><input placeholder="اسم المادة" class="gpa-name"><input type="number" placeholder="الساعات" class="gpa-hours" min="1" max="6"><input type="number" placeholder="4.0" class="gpa-grade" step="0.5" min="0" max="4"></div>
+          <div class="gpa-row"><input placeholder="اسم المادة" class="gpa-name"><input type="number" placeholder="الساعات" class="gpa-hours" min="1" max="6"><input type="number" placeholder="4.0" class="gpa-grade" step="0.5" min="0" max="4"></div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+          <button class="tool-btn green" onclick="calcGPA()"><i class="fas fa-calculator"></i> احسب GPA</button>
+          <button class="tool-btn blue" onclick="addGPARow()"><i class="fas fa-plus"></i> مادة جديدة</button>
+        </div>
+        <div class="tool-result" id="gpa-result"></div>
+      </div>
+    </div>
+
+    <!-- POMODORO -->
+    <div class="tool-panel reveal reveal-delay-3" id="pomodoro">
+      <div class="tool-header">
+        <div class="tool-icon-big" style="background:linear-gradient(135deg,#fee2e2,#fecaca);">⏳</div>
+        <div>
+          <div class="tool-name">مؤقت بومودورو للمذاكرة</div>
+          <div class="tool-desc-short">تركيز 25 دقيقة + استراحة 5 دقائق</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="pom-status" id="pom-status">🎯 جلسة تركيز</div>
+        <div class="pomodoro-timer" id="pom-timer">25:00</div>
+        <div class="pom-buttons">
+          <button class="tool-btn green" id="pom-start" onclick="pomStart()"><i class="fas fa-play"></i> ابدأ</button>
+          <button class="tool-btn red" onclick="pomPause()" id="pom-pause" style="display:none"><i class="fas fa-pause"></i> إيقاف</button>
+          <button class="tool-btn" style="background:#6b7280;" onclick="pomReset()"><i class="fas fa-redo"></i> إعادة</button>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap;">
+          <button class="tool-btn blue" onclick="setPomMode(25,'جلسة تركيز 🎯')" style="padding:6px 14px;font-size:12px;">⏱ 25 دقيقة</button>
+          <button class="tool-btn blue" onclick="setPomMode(5,'استراحة قصيرة ☕')" style="padding:6px 14px;font-size:12px;">☕ 5 دقائق</button>
+          <button class="tool-btn blue" onclick="setPomMode(15,'استراحة طويلة 🌿')" style="padding:6px 14px;font-size:12px;">🌿 15 دقيقة</button>
+        </div>
+        <div id="pom-sessions" style="text-align:center;margin-top:10px;font-size:12px;color:var(--text-muted);font-weight:700;">جلسات مكتملة: <span id="pom-count">0</span> 🍅</div>
+      </div>
+    </div>
+
+    <!-- TRANSLATOR -->
+    <div class="tool-panel reveal reveal-delay-1" id="translator">
+      <div class="tool-header">
+        <div class="tool-icon-big" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);">🌍</div>
+        <div>
+          <div class="tool-name">ترجمة النصوص</div>
+          <div class="tool-desc-short">ترجمة سريعة عربي ↔ إنجليزي</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div style="display:flex;gap:8px;margin-bottom:10px;">
+          <select id="trans-from" class="tool-input" style="flex:1;height:40px;padding:6px 12px;">
+            <option value="ar">العربية 🇸🇦</option>
+            <option value="en">الإنجليزية 🇬🇧</option>
+            <option value="fr">الفرنسية 🇫🇷</option>
+          </select>
+          <button class="tool-btn blue" onclick="swapLang()" style="padding:8px 14px;font-size:12px;">⇌</button>
+          <select id="trans-to" class="tool-input" style="flex:1;height:40px;padding:6px 12px;">
+            <option value="en">الإنجليزية 🇬🇧</option>
+            <option value="ar">العربية 🇸🇦</option>
+            <option value="fr">الفرنسية 🇫🇷</option>
+          </select>
+        </div>
+        <textarea id="trans-input" class="tool-input" rows="4" placeholder="اكتب النص للترجمة..."></textarea>
+        <button class="tool-btn blue" onclick="translateText()" style="margin-top:10px;"><i class="fas fa-language"></i> ترجم الآن</button>
+        <div class="tool-result" id="trans-result" style="margin-top:12px;"></div>
+      </div>
+    </div>
+
+    <!-- QR CODE -->
+    <div class="tool-panel reveal reveal-delay-2" id="qr">
+      <div class="tool-header">
+        <div class="tool-icon-big" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">🔗</div>
+        <div>
+          <div class="tool-name">صانع QR Code</div>
+          <div class="tool-desc-short">حوّل أي رابط أو نص إلى QR فوري</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <input type="text" id="qr-input" class="tool-input" placeholder="أدخل رابط أو نص للتحويل..." style="margin-bottom:10px;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <select id="qr-size" class="tool-input" style="height:40px;padding:6px 12px;width:140px;">
+            <option value="150">صغير 150px</option>
+            <option value="200" selected>متوسط 200px</option>
+            <option value="300">كبير 300px</option>
+          </select>
+          <button class="tool-btn" style="background:linear-gradient(135deg,#f59e0b,#d97706);" onclick="generateQR()"><i class="fas fa-qrcode"></i> إنشاء QR</button>
+        </div>
+        <div class="qr-result" id="qr-result"></div>
+      </div>
+    </div>
+
+    <!-- PDF CONVERTER -->
+    <div class="tool-panel reveal reveal-delay-3" id="pdf">
+      <div class="tool-header">
+        <div class="tool-icon-big" style="background:linear-gradient(135deg,#fee2e2,#fecaca);">🖼️</div>
+        <div>
+          <div class="tool-name">تحويل الصور إلى PDF</div>
+          <div class="tool-desc-short">ارفع صورك وحوّلها فوراً لـ PDF</div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="file-drop" id="drop-zone" onclick="document.getElementById('pdf-files').click()" ondrop="handleDrop(event)" ondragover="dragOver(event)" ondragleave="dragLeave(event)">
+          <div class="file-drop-icon">📁</div>
+          <div class="file-drop-text">اسحب صورك هنا أو انقر للاختيار</div>
+          <div style="font-size:11.5px;color:var(--text-muted);margin-top:4px;">PNG, JPG, JPEG, WebP — حتى 20 صورة</div>
+        </div>
+        <input type="file" id="pdf-files" multiple accept="image/*" style="display:none" onchange="handleFileSelect(event)">
+        <div id="file-list" class="file-list"></div>
+        <button class="tool-btn red" id="pdf-btn" onclick="convertToPDF()" style="display:none;"><i class="fas fa-file-pdf"></i> تحويل إلى PDF</button>
+        <div class="tool-result" id="pdf-result"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROMO FOR SERVICES -->
+<section class="section" style="background:var(--bg-gray);">
+  <div class="cta-banner reveal" style="max-width:900px;margin:0 auto;">
+    <div style="position:relative;z-index:1;">
+      <div style="font-size:46px;margin-bottom:14px;">🎓</div>
+      <h2>تحتاج مساعدة أكاديمية أكثر؟</h2>
+      <p style="color:rgba(255,255,255,0.72);margin-bottom:26px;">استعرض خدماتنا الأكاديمية المتخصصة لجميع التخصصات والجامعات</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="specializations.html" class="btn btn-primary btn-lg"><i class="fas fa-layer-group"></i> استعرض التخصصات</a>
+        <a href="https://wa.me/966533940866" target="_blank" class="btn btn-wa btn-lg"><i class="fab fa-whatsapp"></i> واتساب مباشر</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/site-upgrade.js"></script>
+<script>
+/* ==================== TOOL FUNCTIONS ==================== */
+
+// Word Counter
+function countWords() {
+  const text = document.getElementById('wc-input').value;
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const chars = text.length;
+  const sentences = text.trim() ? (text.match(/[.!?؟।]+/g) || []).length || 1 : 0;
+  const paragraphs = text.trim() ? text.split(/\n\s*\n/).filter(p => p.trim()).length || 1 : 0;
+  document.getElementById('wc-words').textContent = words.toLocaleString('ar');
+  document.getElementById('wc-chars').textContent = chars.toLocaleString('ar');
+  document.getElementById('wc-sentences').textContent = sentences.toLocaleString('ar');
+  document.getElementById('wc-paragraphs').textContent = paragraphs.toLocaleString('ar');
+}
+
+// GPA Calculator
+function addGPARow() {
+  const row = document.createElement('div');
+  row.className = 'gpa-row';
+  row.innerHTML = '<input placeholder="اسم المادة" class="gpa-name"><input type="number" placeholder="الساعات" class="gpa-hours" min="1" max="6"><input type="number" placeholder="4.0" class="gpa-grade" step="0.5" min="0" max="4">';
+  document.getElementById('gpa-rows').appendChild(row);
+}
+
+function calcGPA() {
+  const hours = [...document.querySelectorAll('.gpa-hours')].map(i => parseFloat(i.value) || 0);
+  const grades = [...document.querySelectorAll('.gpa-grade')].map(i => parseFloat(i.value));
+  let totalPoints = 0, totalHours = 0;
+  hours.forEach((h, i) => {
+    if (!isNaN(grades[i]) && h > 0) { totalPoints += h * grades[i]; totalHours += h; }
+  });
+  const res = document.getElementById('gpa-result');
+  if (!totalHours) { res.innerHTML = '⚠️ أدخل الساعات والدرجات أولاً'; res.classList.add('show'); return; }
+  const gpa = (totalPoints / totalHours).toFixed(2);
+  const letter = gpa >= 3.75 ? 'A (ممتاز 🏆)' : gpa >= 3.5 ? 'A- (ممتاز)' : gpa >= 3.25 ? 'B+ (جيد جدًا)' : gpa >= 3.0 ? 'B (جيد جدًا)' : gpa >= 2.75 ? 'B- (جيد)' : gpa >= 2.5 ? 'C+ (مقبول)' : gpa >= 2.0 ? 'C (مقبول)' : 'راجع أداءك 📚';
+  res.innerHTML = `<div style="font-size:32px;font-weight:900;color:var(--primary);margin-bottom:8px;">${gpa} / 4.00</div><div style="font-size:14px;font-weight:700;color:var(--text-muted);">التقدير: ${letter}</div><div style="font-size:12.5px;color:var(--text-muted);margin-top:4px;">إجمالي الساعات: ${totalHours}</div>`;
+  res.classList.add('show');
+}
+
+// Pomodoro Timer
+let pomTimer, pomSeconds = 25*60, pomRunning = false, pomSessions = 0;
+function updatePomDisplay() {
+  const m = Math.floor(pomSeconds/60).toString().padStart(2,'0');
+  const s = (pomSeconds%60).toString().padStart(2,'0');
+  document.getElementById('pom-timer').textContent = `${m}:${s}`;
+  document.title = pomRunning ? `⏱ ${m}:${s} — مؤقت سند` : 'الأدوات المجانية | منصة سند التعليمية';
+}
+function pomStart() {
+  if (pomRunning) return;
+  pomRunning = true;
+  document.getElementById('pom-start').style.display = 'none';
+  document.getElementById('pom-pause').style.display = 'inline-flex';
+  pomTimer = setInterval(() => {
+    pomSeconds--;
+    updatePomDisplay();
+    if (pomSeconds <= 0) {
+      clearInterval(pomTimer);
+      pomRunning = false;
+      pomSessions++;
+      document.getElementById('pom-count').textContent = pomSessions;
+      document.getElementById('pom-start').style.display = 'inline-flex';
+      document.getElementById('pom-pause').style.display = 'none';
+      showToast('⏰ انتهى الوقت! خذ استراحة مستحقة 🎉', 'success');
+      try { new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAA').play(); } catch(e){}
+    }
+  }, 1000);
+}
+function pomPause() {
+  clearInterval(pomTimer);
+  pomRunning = false;
+  document.getElementById('pom-start').style.display = 'inline-flex';
+  document.getElementById('pom-pause').style.display = 'none';
+}
+function pomReset() { pomPause(); pomSeconds = 25*60; updatePomDisplay(); document.title = 'الأدوات المجانية | منصة سند التعليمية'; }
+function setPomMode(mins, label) {
+  pomPause(); pomSeconds = mins*60; updatePomDisplay();
+  document.getElementById('pom-status').textContent = label;
+}
+
+// Translator
+function swapLang() {
+  const f = document.getElementById('trans-from'), t = document.getElementById('trans-to');
+  [f.value, t.value] = [t.value, f.value];
+}
+function translateText() {
+  const text = document.getElementById('trans-input').value.trim();
+  if (!text) { showToast('أدخل النص للترجمة', 'error'); return; }
+  const from = document.getElementById('trans-from').value;
+  const to = document.getElementById('trans-to').value;
+  const res = document.getElementById('trans-result');
+  res.classList.add('show');
+  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodeURIComponent(text)}`;
+  res.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الترجمة...';
+  fetch(url)
+    .then(r => r.json())
+    .then(d => {
+      const translated = d[0].map(s => s[0]).join('');
+      res.innerHTML = `<div style="font-weight:700;font-size:14px;color:var(--primary);">${translated}</div><button class="tool-btn blue" style="margin-top:8px;padding:6px 14px;font-size:12px;" onclick="navigator.clipboard.writeText('${translated.replace(/'/g,"\\'")}').then(()=>showToast('تم النسخ ✅'))"><i class="fas fa-copy"></i> نسخ</button>`;
+    })
+    .catch(() => { res.innerHTML = '<div style="color:var(--danger);">تعذرت الترجمة، تحقق من الاتصال</div>'; });
+}
+
+// QR Code
+function generateQR() {
+  const text = document.getElementById('qr-input').value.trim();
+  if (!text) { showToast('أدخل نصاً أو رابطاً', 'error'); return; }
+  const size = document.getElementById('qr-size').value;
+  const url = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&bgcolor=ffffff&color=1a3a6b`;
+  const res = document.getElementById('qr-result');
+  res.innerHTML = `<img src="${url}" alt="QR Code" style="max-width:${size}px;border-radius:12px;border:1px solid var(--border);margin:10px auto;display:block;"><br><a href="${url}" download="qrcode.png" class="tool-btn" style="background:linear-gradient(135deg,#f59e0b,#d97706);display:inline-flex;text-decoration:none;"><i class="fas fa-download"></i> تحميل QR</a>`;
+  res.classList.add('show');
+}
+
+// PDF Converter
+let selectedFiles = [];
+function handleFileSelect(e) { selectedFiles = [...e.target.files]; updateFileList(); }
+function handleDrop(e) { e.preventDefault(); dragLeave(e); selectedFiles = [...e.dataTransfer.files].filter(f => f.type.startsWith('image/')); updateFileList(); }
+function dragOver(e) { e.preventDefault(); document.getElementById('drop-zone').classList.add('drag-over'); }
+function dragLeave(e) { document.getElementById('drop-zone').classList.remove('drag-over'); }
+function updateFileList() {
+  const list = document.getElementById('file-list');
+  const btn = document.getElementById('pdf-btn');
+  if (selectedFiles.length) {
+    list.innerHTML = `<div style="font-size:12.5px;color:var(--success);font-weight:700;margin-top:8px;">✅ تم اختيار ${selectedFiles.length} صورة:</div>` + selectedFiles.map(f => `<div style="font-size:12px;color:var(--text-muted);padding:2px 0;">• ${f.name}</div>`).join('');
+    btn.style.display = 'inline-flex';
+  } else { list.innerHTML = ''; btn.style.display = 'none'; }
+}
+function convertToPDF() {
+  if (!selectedFiles.length) return;
+  const res = document.getElementById('pdf-result');
+  res.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحويل...';
+  res.classList.add('show');
+  const reader = new FileReader();
+  let i = 0;
+  const htmlParts = [];
+  function readNext() {
+    if (i >= selectedFiles.length) {
+      const html = `<!DOCTYPE html><html><body style="margin:0;padding:0;background:#fff;">${htmlParts.join('')}</body></html>`;
+      const blob = new Blob([html], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      res.innerHTML = `<div style="color:var(--success);font-weight:800;margin-bottom:8px;">✅ تم إنشاء الملف بنجاح!</div><div style="font-size:12.5px;color:var(--text-muted);margin-bottom:10px;">افتح الرابط ثم اطبع (Ctrl+P) واختر "حفظ كـ PDF"</div><a href="${url}" target="_blank" class="tool-btn green" style="text-decoration:none;"><i class="fas fa-external-link-alt"></i> فتح للطباعة كـ PDF</a>`;
+      return;
+    }
+    const reader2 = new FileReader();
+    reader2.onload = (e) => {
+      htmlParts.push(`<img src="${e.target.result}" style="width:100%;page-break-after:always;display:block;">`);
+      i++; readNext();
+    };
+    reader2.readAsDataURL(selectedFiles[i]);
+  }
+  readNext();
+}
+</script>
+</body>
+</html>

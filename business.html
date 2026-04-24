@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الإداري والمحاسبي | منصة سند التعليمية</title>
+  <meta name="description" content="خدمات أكاديمية متخصصة للمسار الإداري والمحاسبي — إدارة أعمال، محاسبة، تسويق، موارد بشرية واقتصاد">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    .page-hero { background: linear-gradient(145deg, #060e1f 0%, #1a0e00 40%, #3d1f00 100%); }
+    .service-card { background: white; border-radius: 20px; padding: 28px; border: 1px solid #fed7aa; box-shadow: 0 4px 20px rgba(234,88,12,0.07); transition: all 0.35s; position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, #f97316, #c2410c); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(234,88,12,0.18); border-color: #f97316; }
+    .service-emoji { font-size: 44px; margin-bottom: 14px; display: block; }
+    .service-title { font-size: 17px; font-weight: 900; color: var(--primary); margin-bottom: 8px; }
+    .service-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.75; margin-bottom: 16px; }
+    .service-price { display: inline-flex; align-items: center; gap: 6px; background: #ffedd5; color: #7c2d12; padding: 5px 14px; border-radius: 30px; font-size: 12.5px; font-weight: 800; margin-bottom: 16px; }
+    .service-features { list-style: none; margin-bottom: 20px; }
+    .service-features li { font-size: 13px; color: var(--text-body); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+    .service-features li::before { content: '✓'; color: #f97316; font-weight: 900; font-size: 14px; flex-shrink: 0; }
+    .btn-add { background: linear-gradient(135deg, #f97316, #c2410c); color: white; border: none; padding: 11px 24px; border-radius: 30px; font-size: 13.5px; font-weight: 800; cursor: pointer; transition: all 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font); }
+    .btn-add:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(249,115,22,0.45); }
+    .btn-add.added { background: linear-gradient(135deg, #6b7280, #4b5563); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .page-hero-inner { max-width: 1200px; margin: 0 auto; padding: 70px 30px 90px; text-align: center; position: relative; z-index: 1; }
+    .page-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.35); color: #fdba74; padding: 7px 20px; border-radius: 30px; font-size: 12.5px; font-weight: 700; margin-bottom: 24px; }
+    .page-hero h1 { font-size: clamp(28px, 4.5vw, 52px); font-weight: 900; color: white; margin-bottom: 16px; line-height: 1.2; }
+    .page-hero h1 span { color: #fdba74; }
+    .page-hero p { font-size: 16px; color: rgba(255,255,255,0.72); max-width: 580px; margin: 0 auto 36px; line-height: 1.8; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumb a, .breadcrumb span { font-size: 12.5px; color: rgba(255,255,255,0.55); font-weight: 600; }
+    .breadcrumb a:hover { color: #fdba74; }
+    .breadcrumb .sep { color: rgba(255,255,255,0.3); }
+    .hero-stats-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+    .h-stat { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 16px 24px; text-align: center; backdrop-filter: blur(10px); }
+    .h-stat .hs-num { font-size: 26px; font-weight: 900; color: #fdba74; }
+    .h-stat .hs-label { font-size: 11.5px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+    .cta-wa { background: linear-gradient(135deg, #1a0e00, #3d1f00); border-radius: 24px; padding: 48px; text-align: center; color: white; margin-top: 60px; }
+    @media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } .page-hero-inner { padding: 50px 20px 60px; } }
+  </style>
+</head>
+<body>
+<div id="header-placeholder" data-page="spec"></div>
+
+<section class="page-hero">
+  <div class="hero-bg"><div class="orb orb-1" style="background:#f97316;"></div><div class="orb orb-2" style="background:#eab308;"></div><div class="grid-pattern"></div></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">🏠 الرئيسية</a><span class="sep">›</span>
+      <a href="specializations.html">التخصصات</a><span class="sep">›</span>
+      <span style="color:#fdba74;">الإداري والمحاسبي</span>
+    </div>
+    <div class="page-hero-badge"><span>💼</span> الإداري والمحاسبي</div>
+    <h1>خدمات أكاديمية لـ<span>التخصصات الإدارية</span> 📈</h1>
+    <p>حلول أكاديمية متخصصة لطلاب الإدارة، المحاسبة، التسويق، الموارد البشرية والاقتصاد في جميع الجامعات</p>
+    <div class="hero-stats-row">
+      <div class="h-stat"><div class="hs-num">9+</div><div class="hs-label">خدمة إدارية</div></div>
+      <div class="h-stat"><div class="hs-num">+1100</div><div class="hs-label">طالب إداري</div></div>
+      <div class="h-stat"><div class="hs-num">8+</div><div class="hs-label">تخصص إداري</div></div>
+      <div class="h-stat"><div class="hs-num">24h</div><div class="hs-label">متوسط التسليم</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div style="background:linear-gradient(135deg,#fff7ed,#ffedd5);border-radius:20px;padding:32px;margin-bottom:60px;border:1px solid rgba(249,115,22,0.2);" class="reveal">
+    <h3 style="font-size:16px;font-weight:900;color:#7c2d12;margin-bottom:4px;"><i class="fas fa-briefcase"></i> التخصصات الإدارية التي نخدمها</h3>
+    <p style="font-size:13px;color:#6b7280;">نغطي جميع التخصصات الإدارية والتجارية في الجامعات السعودية</p>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;justify-content:center;">
+      <div style="background:white;border:1.5px solid rgba(249,115,22,0.3);border-radius:30px;padding:8px 18px;font-size:13px;font-weight:700;color:#7c2d12;">💼 إدارة أعمال</div>
+      <div style="background:white;border:1.5px solid rgba(249,115,22,0.3);border-radius:30px;padding:8px 18px;font-size:13px;font-weight:700;color:#7c2d12;">📊 المحاسبة</div>
+      <div style="background:white;border:1.5px solid rgba(249,115,22,0.3);border-radius:30px;padding:8px 18px;font-size:13px;font-weight:700;color:#7c2d12;">📢 التسويق</div>
+      <div style="background:white;border:1.5px solid rgba(249,115,22,0.3);border-radius:30px;padding:8px 18px;font-size:13px;font-weight:700;color:#7c2d12;">👥 الموارد البشرية</div>
+      <div style="background:white;border:1.5px solid rgba(249,115,22,0.3);border-radius:30px;padding:8px 18px;font-size:13px;font-weight:700;color:#7c2d12;">📈 الاقتصاد</div>
+      <div style="background:white;border:1.5px solid rgba(249,115,22,0.3);border-radius:30px;padding:8px 18px;font-size:13px;font-weight:700;color:#7c2d12;">⚖️ القانون التجاري</div>
+      <div style="background:white;border:1.5px solid rgba(249,115,22,0.3);border-radius:30px;padding:8px 18px;font-size:13px;font-weight:700;color:#7c2d12;">💻 نظم المعلومات</div>
+      <div style="background:white;border:1.5px solid rgba(249,115,22,0.3);border-radius:30px;padding:8px 18px;font-size:13px;font-weight:700;color:#7c2d12;">🏦 التمويل والمصارف</div>
+    </div>
+  </div>
+
+  <div class="section-header reveal">
+    <div class="section-chip" style="background:#ffedd5;color:#7c2d12;border-color:rgba(249,115,22,0.25);">💼 الخدمات الإدارية</div>
+    <h2 class="section-title">خدمات المسار الإداري والمحاسبي</h2>
+    <p class="section-subtitle">حلول أكاديمية متكاملة لجميع المواد والتخصصات الإدارية والتجارية</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-emoji">📊</span>
+      <div class="service-title">مشاريع المحاسبة والقيود</div>
+      <div class="service-desc">حل جميع مسائل المحاسبة — القيود اليومية، الميزان، قائمة الدخل، الميزانية العمومية والتدفق النقدي</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features"><li>القيود اليومية والميزان</li><li>القوائم المالية</li><li>المحاسبة المتوسطة والمتقدمة</li><li>Excel المحاسبي</li></ul>
+      <button class="btn-add" id="btn-acct" onclick="addToCart('acct','مشروع محاسبة',0,'📊')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-emoji">💼</span>
+      <div class="service-title">أبحاث الإدارة والأعمال</div>
+      <div class="service-desc">كتابة أبحاث إدارة الأعمال — دراسات حالة، مقالات أكاديمية، تقارير استراتيجية وخطط أعمال</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features"><li>دراسات حالة متكاملة</li><li>خطط أعمال Business Plan</li><li>التحليل الاستراتيجي SWOT</li><li>توثيق APA</li></ul>
+      <button class="btn-add" id="btn-mgmt" onclick="addToCart('mgmt','بحث إداري',0,'💼')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <span class="service-emoji">📢</span>
+      <div class="service-title">مشاريع التسويق والسوق</div>
+      <div class="service-desc">بحوث التسويق، خطط تسويقية، دراسات السوق، تحليل المنافسين والمزيج التسويقي 4Ps</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features"><li>بحوث السوق Market Research</li><li>خطط تسويقية Marketing Plan</li><li>تحليل المنافسين</li><li>السلوك الشرائي</li></ul>
+      <button class="btn-add" id="btn-mktg" onclick="addToCart('mktg','مشروع تسويق',0,'📢')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-emoji">📈</span>
+      <div class="service-title">مسائل الاقتصاد والتحليل</div>
+      <div class="service-desc">حل مسائل الاقتصاد الجزئي والكلي — عرض وطلب، مرونة، نماذج كينز، تحليل التوازن العام</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features"><li>الاقتصاد الجزئي Micro</li><li>الاقتصاد الكلي Macro</li><li>رسوم بيانية اقتصادية</li><li>تحليل الحسابات</li></ul>
+      <button class="btn-add" id="btn-econ" onclick="addToCart('econ','مسائل اقتصاد',0,'📈')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-emoji">💻</span>
+      <div class="service-title">نظم المعلومات الإدارية MIS</div>
+      <div class="service-desc">مشاريع نظم المعلومات — تحليل النظم، ERD، DFD، الأمان المعلوماتي والتحول الرقمي</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features"><li>تحليل وتصميم النظم</li><li>ERD & DFD Diagrams</li><li>نماذج البيانات</li><li>أمن المعلومات</li></ul>
+      <button class="btn-add" id="btn-mis" onclick="addToCart('mis','مشروع MIS',0,'💻')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <span class="service-emoji">⚖️</span>
+      <div class="service-title">القانون التجاري والأعمال</div>
+      <div class="service-desc">تكاليف وأبحاث القانون التجاري، العقود، الشركات، التجارة الإلكترونية والملكية الفكرية</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features"><li>قانون الشركات</li><li>العقود التجارية</li><li>حماية المستهلك</li><li>الملكية الفكرية</li></ul>
+      <button class="btn-add" id="btn-law" onclick="addToCart('law','بحث قانون تجاري',0,'⚖️')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-emoji">👥</span>
+      <div class="service-title">الموارد البشرية وإدارة الجودة</div>
+      <div class="service-desc">مشاريع الموارد البشرية، إدارة الجودة الشاملة TQM، تخطيط القوى العاملة والتدريب</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features"><li>إدارة الجودة TQM</li><li>تخطيط الموارد البشرية</li><li>تقييم الأداء</li><li>تدريب وتطوير</li></ul>
+      <button class="btn-add" id="btn-hr" onclick="addToCart('hr','مشروع موارد بشرية',0,'👥')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-emoji">🎯</span>
+      <div class="service-title">عروض إدارية احترافية</div>
+      <div class="service-desc">تصميم عروض PowerPoint إدارية وخرائط ذهنية ومخططات Gantt وأدوات إدارة المشاريع</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features"><li>تصميم PPT احترافي</li><li>خرائط ذهنية</li><li>مخططات Gantt</li><li>إنفوجرافيك</li></ul>
+      <button class="btn-add" id="btn-biz-ppt" onclick="addToCart('biz-ppt','عرض إداري',0,'🎯')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-3" style="background:linear-gradient(135deg,#fff7ed,#ffedd5);border-color:rgba(249,115,22,0.3);">
+      <span class="service-emoji">💬</span>
+      <div class="service-title">خدمة مخصصة لتخصصك</div>
+      <div class="service-desc">تخصص أو مادة غير مذكورة؟ نغطي جميع المواد الإدارية والتجارية في كل المستويات</div>
+      <div class="service-price" style="background:#ffedd5;color:#7c2d12;"><i class="fas fa-star"></i> مخصص لك</div>
+      <ul class="service-features"><li>أي مادة إدارية</li><li>أي مستوى دراسي</li><li>سعر تنافسي</li><li>تواصل فوري</li></ul>
+      <a href="https://wa.me/966533940866" target="_blank" class="btn-add" style="text-decoration:none;background:linear-gradient(135deg,#25d366,#1baa52);"><i class="fab fa-whatsapp"></i> تواصل للاستفسار</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg-gray);">
+  <div class="cta-wa reveal" style="max-width:900px;margin:0 auto;">
+    <div style="font-size:50px;margin-bottom:16px;position:relative;z-index:1;">💼</div>
+    <h2 style="font-size:28px;font-weight:900;margin-bottom:12px;position:relative;z-index:1;">جاهز للحصول على خدمتك الإدارية؟</h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.72);margin-bottom:28px;position:relative;z-index:1;">أضف الخدمات للسلة وأتمم طلبك أو تواصل معنا مباشرة</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
+      <a href="checkout.html" class="btn btn-primary btn-lg"><i class="fas fa-shopping-cart"></i> إتمام الطلب</a>
+      <a href="https://wa.me/966533940866" target="_blank" class="btn btn-wa btn-lg"><i class="fab fa-whatsapp"></i> واتساب مباشر</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/site-upgrade.js"></script>
+</body>
+</html>

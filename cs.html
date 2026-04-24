@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>البرمجة والحاسب | منصة سند التعليمية</title>
+  <meta name="description" content="خدمات أكاديمية متخصصة لتخصصات البرمجة والحاسب — Java, Python, مواقع، تطبيقات، قواعد بيانات وأكثر">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    .page-hero { background: linear-gradient(145deg, #060e1f 0%, #0c1a40 40%, #1e1065 100%); }
+    .service-card { background: white; border-radius: 20px; padding: 28px; border: 1px solid #ede9fe; box-shadow: 0 4px 20px rgba(124,58,237,0.07); transition: all 0.35s; position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, #7c3aed, #4c1d95); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(124,58,237,0.18); border-color: #7c3aed; }
+    .service-emoji { font-size: 44px; margin-bottom: 14px; display: block; }
+    .service-title { font-size: 17px; font-weight: 900; color: var(--primary); margin-bottom: 8px; }
+    .service-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.75; margin-bottom: 16px; }
+    .service-price { display: inline-flex; align-items: center; gap: 6px; background: #ede9fe; color: #4c1d95; padding: 5px 14px; border-radius: 30px; font-size: 12.5px; font-weight: 800; margin-bottom: 16px; }
+    .service-features { list-style: none; margin-bottom: 20px; }
+    .service-features li { font-size: 13px; color: var(--text-body); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+    .service-features li::before { content: '✓'; color: #7c3aed; font-weight: 900; font-size: 14px; flex-shrink: 0; }
+    .btn-add { background: linear-gradient(135deg, #7c3aed, #5b21b6); color: white; border: none; padding: 11px 24px; border-radius: 30px; font-size: 13.5px; font-weight: 800; cursor: pointer; transition: all 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font); }
+    .btn-add:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,0.45); }
+    .btn-add.added { background: linear-gradient(135deg, #6b7280, #4b5563); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .page-hero-inner { max-width: 1200px; margin: 0 auto; padding: 70px 30px 90px; text-align: center; position: relative; z-index: 1; }
+    .page-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.35); color: #c4b5fd; padding: 7px 20px; border-radius: 30px; font-size: 12.5px; font-weight: 700; margin-bottom: 24px; }
+    .page-hero h1 { font-size: clamp(28px, 4.5vw, 52px); font-weight: 900; color: white; margin-bottom: 16px; line-height: 1.2; }
+    .page-hero h1 span { color: #c4b5fd; }
+    .page-hero p { font-size: 16px; color: rgba(255,255,255,0.72); max-width: 580px; margin: 0 auto 36px; line-height: 1.8; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumb a, .breadcrumb span { font-size: 12.5px; color: rgba(255,255,255,0.55); font-weight: 600; }
+    .breadcrumb a:hover { color: #c4b5fd; }
+    .breadcrumb .sep { color: rgba(255,255,255,0.3); }
+    .hero-stats-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+    .h-stat { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 16px 24px; text-align: center; backdrop-filter: blur(10px); }
+    .h-stat .hs-num { font-size: 26px; font-weight: 900; color: #c4b5fd; }
+    .h-stat .hs-label { font-size: 11.5px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; justify-content: center; }
+    .tech-tag { background: white; border: 1.5px solid rgba(124,58,237,0.3); border-radius: 30px; padding: 8px 18px; font-size: 13px; font-weight: 700; color: #4c1d95; display: flex; align-items: center; gap: 7px; transition: all 0.25s; }
+    .tech-tag:hover { background: #7c3aed; color: white; border-color: #7c3aed; transform: translateY(-2px); }
+    .cta-wa { background: linear-gradient(135deg, #0c1a40, #1e1065); border-radius: 24px; padding: 48px; text-align: center; color: white; margin-top: 60px; position: relative; overflow: hidden; }
+    @media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } .page-hero-inner { padding: 50px 20px 60px; } }
+  </style>
+</head>
+<body>
+<div id="header-placeholder" data-page="spec"></div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-bg"><div class="orb orb-1" style="background:#7c3aed;"></div><div class="orb orb-2" style="background:#4f46e5;"></div><div class="grid-pattern"></div></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">🏠 الرئيسية</a>
+      <span class="sep">›</span>
+      <a href="specializations.html">التخصصات</a>
+      <span class="sep">›</span>
+      <span style="color:#c4b5fd;">البرمجة والحاسب</span>
+    </div>
+    <div class="page-hero-badge"><span>💻</span> البرمجة وعلوم الحاسب</div>
+    <h1>مشاريع وتكاليف<span> البرمجة والحاسب</span> 🖥️</h1>
+    <p>حلول برمجية وأكاديمية متكاملة لطلاب علوم الحاسب، هندسة البرمجيات، تقنية المعلومات وجميع التخصصات التقنية</p>
+    <div class="hero-stats-row">
+      <div class="h-stat"><div class="hs-num">10+</div><div class="hs-label">خدمة برمجية</div></div>
+      <div class="h-stat"><div class="hs-num">+1500</div><div class="hs-label">مشروع منجز</div></div>
+      <div class="h-stat"><div class="hs-num">15+</div><div class="hs-label">لغة برمجة</div></div>
+      <div class="h-stat"><div class="hs-num">48h</div><div class="hs-label">متوسط التسليم</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH TAGS -->
+<section class="section section-alt">
+  <div class="sub-specialties reveal" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-radius:20px;padding:32px;margin-bottom:60px;border:1px solid rgba(124,58,237,0.2);">
+    <h3 style="font-size:16px;font-weight:900;color:#4c1d95;margin-bottom:4px;"><i class="fas fa-code"></i> التقنيات واللغات التي نتقنها</h3>
+    <p style="font-size:13px;color:#6b7280;">خبرة واسعة في جميع لغات وأطر البرمجة المطلوبة أكاديميًا</p>
+    <div class="tech-tags">
+      <div class="tech-tag">☕ Java</div>
+      <div class="tech-tag">🐍 Python</div>
+      <div class="tech-tag">⚙️ C / C++</div>
+      <div class="tech-tag"># C#</div>
+      <div class="tech-tag">🌐 HTML + CSS</div>
+      <div class="tech-tag">💛 JavaScript</div>
+      <div class="tech-tag">🐘 PHP</div>
+      <div class="tech-tag">🌱 .NET / ASP.NET</div>
+      <div class="tech-tag">🍎 Swift</div>
+      <div class="tech-tag">🤖 Kotlin</div>
+      <div class="tech-tag">🗄️ SQL / MySQL</div>
+      <div class="tech-tag">🍃 MongoDB</div>
+      <div class="tech-tag">📊 Oracle</div>
+      <div class="tech-tag">🔷 Access</div>
+      <div class="tech-tag">📐 UML / ERD</div>
+      <div class="tech-tag">🤖 Machine Learning</div>
+    </div>
+  </div>
+
+  <div class="section-header reveal">
+    <div class="section-chip" style="background:#ede9fe;color:#4c1d95;border-color:rgba(124,58,237,0.25);">💻 الخدمات البرمجية</div>
+    <h2 class="section-title">خدمات البرمجة والحاسب</h2>
+    <p class="section-subtitle">مشاريع برمجية متكاملة وتكاليف أكاديمية لجميع لغات وأطر البرمجة</p>
+  </div>
+
+  <div class="services-grid">
+
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-emoji">☕</span>
+      <div class="service-title">مشاريع Java المتكاملة</div>
+      <div class="service-desc">تطوير مشاريع Java من الأساسيات حتى المتقدمة — OOP، JavaFX، Swing، Spring Boot، وقواعد البيانات</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>OOP كاملة مع التوثيق</li>
+        <li>GUI احترافي (JavaFX/Swing)</li>
+        <li>ربط قواعد البيانات</li>
+        <li>شرح الكود بالتفصيل</li>
+      </ul>
+      <button class="btn-add" id="btn-java" onclick="addToCart('java','مشروع Java',0,'☕')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة
+      </button>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-emoji">🐍</span>
+      <div class="service-title">مشاريع Python المتقدمة</div>
+      <div class="service-desc">تطوير تطبيقات Python — Data Analysis، Machine Learning، Django، Flask، Tkinter وأكثر</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>Data Analysis & Visualization</li>
+        <li>Machine Learning Projects</li>
+        <li>Web Apps (Django/Flask)</li>
+        <li>Automation Scripts</li>
+      </ul>
+      <button class="btn-add" id="btn-python" onclick="addToCart('python','مشروع Python',0,'🐍')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة
+      </button>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3">
+      <span class="service-emoji">🌐</span>
+      <div class="service-title">تطوير مواقع ويب كاملة</div>
+      <div class="service-desc">تصميم وتطوير مواقع ويب كاملة — Front-end وBack-end مع قواعد البيانات والأمان</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>HTML5 + CSS3 + JavaScript</li>
+        <li>PHP / Node.js Back-end</li>
+        <li>MySQL / MongoDB</li>
+        <li>Responsive Design</li>
+      </ul>
+      <button class="btn-add" id="btn-web" onclick="addToCart('web','مشروع موقع ويب',0,'🌐')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة
+      </button>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-emoji">🗄️</span>
+      <div class="service-title">قواعد البيانات المتقدمة</div>
+      <div class="service-desc">تصميم وتطوير قواعد بيانات — ERD، Normalization، SQL Queries، Stored Procedures</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>ERD & Schema Design</li>
+        <li>SQL / MySQL / Oracle</li>
+        <li>Normalization 3NF</li>
+        <li>Reports & Queries</li>
+      </ul>
+      <button class="btn-add" id="btn-db" onclick="addToCart('db','مشروع قاعدة بيانات',0,'🗄️')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة
+      </button>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-emoji">📐</span>
+      <div class="service-title">تحليل وتصميم النظم (UML)</div>
+      <div class="service-desc">إعداد وثائق تحليل وتصميم النظم — Use Case، Class Diagram، Sequence، Activity، DFD</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>Use Case & Class Diagrams</li>
+        <li>Sequence & Activity</li>
+        <li>System Requirements</li>
+        <li>DFD Levels 0, 1, 2</li>
+      </ul>
+      <button class="btn-add" id="btn-uml" onclick="addToCart('uml','تحليل نظم UML',0,'📐')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة
+      </button>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3">
+      <span class="service-emoji">📱</span>
+      <div class="service-title">تطبيقات الجوال</div>
+      <div class="service-desc">تطوير تطبيقات Android/iOS — Java/Kotlin للأندرويد، Swift للآيفون، وReact Native عبر المنصتين</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>Android (Java/Kotlin)</li>
+        <li>iOS (Swift)</li>
+        <li>React Native</li>
+        <li>Firebase Integration</li>
+      </ul>
+      <button class="btn-add" id="btn-mobile" onclick="addToCart('mobile','تطبيق جوال',0,'📱')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة
+      </button>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-emoji">⚙️</span>
+      <div class="service-title">C / C++ / C# مشاريع</div>
+      <div class="service-desc">مشاريع C، C++، C# المتكاملة — OOP، هياكل البيانات، خوارزميات، Windows Forms، Console</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>Data Structures & Algorithms</li>
+        <li>OOP & Templates</li>
+        <li>Windows Forms (C#)</li>
+        <li>Console Applications</li>
+      </ul>
+      <button class="btn-add" id="btn-cpp" onclick="addToCart('cpp','مشروع C/C++/C#',0,'⚙️')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة
+      </button>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-emoji">📊</span>
+      <div class="service-title">تقارير وعروض تقنية</div>
+      <div class="service-desc">إعداد تقارير تقنية، عروض PowerPoint، وثائق المشاريع، Technical Documentation</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>Technical Reports</li>
+        <li>Project Documentation</li>
+        <li>PowerPoint Presentations</li>
+        <li>User Manuals</li>
+      </ul>
+      <button class="btn-add" id="btn-cs-report" onclick="addToCart('cs-report','تقرير تقني',0,'📊')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة
+      </button>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-color:rgba(124,58,237,0.3);">
+      <span class="service-emoji">💬</span>
+      <div class="service-title">خدمة مخصصة</div>
+      <div class="service-desc">تخصص مختلف أو لغة غير مذكورة؟ نغطي جميع التقنيات والأطر البرمجية المطلوبة أكاديميًا</div>
+      <div class="service-price" style="background:#ede9fe;color:#4c1d95;"><i class="fas fa-star"></i> مخصص لك</div>
+      <ul class="service-features">
+        <li>أي لغة برمجة</li>
+        <li>أي مستوى تعليمي</li>
+        <li>شرح كامل للكود</li>
+        <li>تعديلات مجانية</li>
+      </ul>
+      <a href="https://wa.me/966533940866" target="_blank" class="btn-add" style="text-decoration:none;background:linear-gradient(135deg,#25d366,#1baa52);">
+        <i class="fab fa-whatsapp"></i> تواصل للاستفسار
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:var(--bg-gray);">
+  <div class="cta-wa reveal" style="max-width:900px;margin:0 auto;">
+    <div style="font-size:50px;margin-bottom:16px;position:relative;z-index:1;">💻</div>
+    <h2 style="font-size:28px;font-weight:900;margin-bottom:12px;position:relative;z-index:1;">ابدأ مشروعك البرمجي الآن</h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.72);margin-bottom:28px;position:relative;z-index:1;">أضف خدماتك للسلة وأتمم طلبك أو تواصل معنا للحصول على سعر مخصص</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
+      <a href="checkout.html" class="btn btn-primary btn-lg"><i class="fas fa-shopping-cart"></i> إتمام الطلب</a>
+      <a href="https://wa.me/966533940866" target="_blank" class="btn btn-wa btn-lg"><i class="fab fa-whatsapp"></i> واتساب مباشر</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/site-upgrade.js"></script>
+</body>
+</html>

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منصة سند التعليمية | أكاديميتك الرقمية المتكاملة 📚</title>
+  <meta name="description" content="منصة سند التعليمية — أكاديمية رقمية متكاملة لجميع الطلاب في المملكة. دعم أكاديمي شامل، مشاريع KSU، وأدوات مجانية.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* INDEX PAGE EXTRAS */
+    .hero-floating-cards {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .floating-card {
+      position: absolute;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: floatCard 6s ease-in-out infinite;
+    }
+    .floating-card.fc-1 { top: 20%; right: 8%; animation-delay: 0s; }
+    .floating-card.fc-2 { top: 35%; left: 6%; animation-delay: 1.5s; }
+    .floating-card.fc-3 { bottom: 28%; right: 10%; animation-delay: 3s; }
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @media(max-width:768px) { .floating-card { display: none; } }
+
+    /* Academy Section */
+    .academy-section {
+      background: linear-gradient(160deg, #f0f6ff, #e8f0fe);
+      position: relative;
+      overflow: hidden;
+    }
+    .academy-section::before {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(37,84,160,0.06), transparent);
+      top: -100px; right: -100px;
+      border-radius: 50%;
+    }
+
+    /* Trust Badges */
+    .trust-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--r-full);
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      box-shadow: var(--shadow-xs);
+      transition: all 0.2s;
+    }
+    .trust-badge:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .trust-badge .tb-icon {
+      width: 34px; height: 34px;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+    }
+
+    /* Pricing preview */
+    .pricing-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 40px auto 0;
+    }
+    .price-preview-card {
+      background: white;
+      border-radius: var(--r-lg);
+      padding: 20px;
+      text-align: center;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s;
+    }
+    .price-preview-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .price-preview-card .ppc-emoji { font-size: 32px; margin-bottom: 10px; }
+    .price-preview-card .ppc-name { font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+    .price-preview-card .ppc-price { font-size: 20px; font-weight: 900; color: var(--primary); }
+    .price-preview-card .ppc-price small { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+    /* Contact cards */
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: white;
+      border-radius: var(--r-xl);
+      padding: 26px 30px;
+      color: var(--text-dark);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      flex: 1;
+      min-width: 260px;
+      text-decoration: none;
+    }
+    .contact-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
+    .contact-icon {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      color: white;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="header-placeholder" data-page="home"></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-pattern"></div>
+  </div>
+
+  <!-- Floating decorative cards -->
+  <div class="hero-floating-cards">
+    <div class="floating-card fc-1"><span>💊</span> خدمات تمريض احترافية</div>
+    <div class="floating-card fc-2"><span>💻</span> مشاريع برمجة متكاملة</div>
+    <div class="floating-card fc-3"><span>⚡</span> تسليم خلال 24 ساعة</div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      الأول في الدعم الأكاديمي بالمملكة 🇸🇦
+    </div>
+    <h1>أكاديميتك الرقمية<br><span class="highlight">المتكاملة للنجاح 🎓</span></h1>
+    <p class="hero-desc">دعم أكاديمي شامل لجميع التخصصات والجامعات — مراجعة، تنسيق، نماذج استرشادية، عروض تقديمية، خرائط ذهنية، برمجة وأكثر!</p>
+
+    <div class="hero-cta">
+      <a href="specializations.html" class="btn btn-primary btn-lg">
+        <i class="fas fa-layer-group"></i> استعرض التخصصات
+      </a>
+      <a href="ksu.html" class="btn btn-white btn-lg">
+        <i class="fas fa-university"></i> مشاريع جامعة الملك سعود
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="s-num">+5000</span>
+        <span class="s-label">طالب استفاد</span>
+      </div>
+      <div class="stat-item">
+        <span class="s-num">+50</span>
+        <span class="s-label">جامعة وكلية</span>
+      </div>
+      <div class="stat-item">
+        <span class="s-num">+200</span>
+        <span class="s-label">تخصص أكاديمي</span>
+      </div>
+      <div class="stat-item">
+        <span class="s-num">99%</span>
+        <span class="s-label">رضا الطلاب</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES BAR ===== -->
+<div class="features-bar">
+  <div class="feat-item"><div class="feat-icon">⚡</div> تسليم سريع 24/7</div>
+  <div class="feat-item"><div class="feat-icon">🎓</div> جميع الجامعات</div>
+  <div class="feat-item"><div class="feat-icon">💬</div> دعم مستمر</div>
+  <div class="feat-item"><div class="feat-icon">✅</div> جودة مضمونة</div>
+  <div class="feat-item"><div class="feat-icon">🔒</div> خصوصية تامة</div>
+  <div class="feat-item"><div class="feat-icon">💳</div> دفع آمن</div>
+  <div class="feat-item"><div class="feat-icon">🧰</div> أدوات مجانية</div>
+</div>
+
+<!-- ===== ACADEMY FEATURES ===== -->
+<section class="section academy-section" id="academy">
+  <div class="section-header reveal">
+    <div class="section-chip"><i class="fas fa-graduation-cap"></i> لماذا سند؟</div>
+    <h2 class="section-title">أكاديمية متكاملة في مكان واحد</h2>
+    <p class="section-subtitle">كل ما يحتاجه الطالب من خدمات أكاديمية وأدوات مجانية وتواصل سريع</p>
+  </div>
+  <div class="academy-features">
+    <div class="academy-feature-card reveal reveal-delay-1">
+      <div class="af-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);">🎯</div>
+      <h3>تخصص دقيق</h3>
+      <p>خدمات مصممة خصيصًا لكل تخصص بمتطلبات دقيقة تناسب احتياجاتك الأكاديمية</p>
+    </div>
+    <div class="academy-feature-card reveal reveal-delay-2">
+      <div class="af-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">⚡</div>
+      <h3>تسليم فائق السرعة</h3>
+      <p>معظم الطلبات تُنجَز خلال 4-48 ساعة مع ضمان الجودة الكاملة</p>
+    </div>
+    <div class="academy-feature-card reveal reveal-delay-3">
+      <div class="af-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">👨‍🏫</div>
+      <h3>فريق متخصص</h3>
+      <p>نخبة من المتخصصين الأكاديميين في جميع التخصصات والمستويات</p>
+    </div>
+    <div class="academy-feature-card reveal reveal-delay-1">
+      <div class="af-icon" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">🧰</div>
+      <h3>أدوات مجانية</h3>
+      <p>حاسبة GPA، مؤقت المذاكرة، تحويل PDF، ترجمة وعداد كلمات — كلها مجانية!</p>
+    </div>
+    <div class="academy-feature-card reveal reveal-delay-2">
+      <div class="af-icon" style="background:linear-gradient(135deg,#fee2e2,#fecaca);">💬</div>
+      <h3>متابعة مستمرة</h3>
+      <p>تواصل مباشر عبر واتساب وتتبع طلبك حتى اللحظة الأخيرة</p>
+    </div>
+    <div class="academy-feature-card reveal reveal-delay-3">
+      <div class="af-icon" style="background:linear-gradient(135deg,#ecfdf5,#a7f3d0);">🔒</div>
+      <h3>سرية وأمان</h3>
+      <p>معلوماتك محمية 100% وطلبك يبقى بيننا بسرية تامة ومضمونة</p>
+    </div>
+  </div>
+
+  <div class="trust-row reveal">
+    <div class="trust-badge"><div class="tb-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">✅</div> جودة مضمونة 100%</div>
+    <div class="trust-badge"><div class="tb-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);">⚡</div> تسليم في الوقت</div>
+    <div class="trust-badge"><div class="tb-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">💰</div> أسعار تنافسية</div>
+    <div class="trust-badge"><div class="tb-icon" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">🔒</div> خصوصية كاملة</div>
+    <div class="trust-badge"><div class="tb-icon" style="background:linear-gradient(135deg,#fee2e2,#fecaca);">💬</div> دعم 24/7</div>
+  </div>
+</section>
+
+<!-- ===== SPECIALIZATIONS ===== -->
+<section class="section section-alt" id="specializations">
+  <div class="section-header reveal">
+    <div class="section-chip">📚 التخصصات الأكاديمية</div>
+    <h2 class="section-title">اختر تخصصك وابدأ الآن</h2>
+    <p class="section-subtitle">خدمات مخصصة لكل تخصص بمتطلبات دقيقة تناسب احتياجاتك الأكاديمية</p>
+  </div>
+  <div class="spec-grid">
+
+    <a href="health.html" class="spec-card spec-health reveal reveal-delay-1">
+      <div class="spec-card-header">
+        <div class="spec-card-icon">💊</div>
+        <h3 class="spec-card-title">المسار الصحي والطبي 🩺</h3>
+        <p class="spec-card-desc">تمريض، طب، صيدلة، علاج طبيعي وجميع التخصصات الصحية</p>
+      </div>
+      <div class="spec-card-footer">
+        <span class="spec-services-count"><i class="fas fa-list"></i> 8+ خدمات متخصصة</span>
+        <span class="spec-go-btn">استعرض <i class="fas fa-arrow-left"></i></span>
+      </div>
+    </a>
+
+    <a href="cs.html" class="spec-card spec-cs reveal reveal-delay-2">
+      <div class="spec-card-header">
+        <div class="spec-card-icon">💻</div>
+        <h3 class="spec-card-title">البرمجة والحاسب</h3>
+        <p class="spec-card-desc">Java, Python, C++, مواقع، تطبيقات، قواعد بيانات وأكثر</p>
+      </div>
+      <div class="spec-card-footer">
+        <span class="spec-services-count"><i class="fas fa-list"></i> 10+ خدمات برمجية</span>
+        <span class="spec-go-btn">استعرض <i class="fas fa-arrow-left"></i></span>
+      </div>
+    </a>
+
+    <a href="science.html" class="spec-card spec-science reveal reveal-delay-3">
+      <div class="spec-card-header">
+        <div class="spec-card-icon">🔬</div>
+        <h3 class="spec-card-title">المسار العلمي 📊</h3>
+        <p class="spec-card-desc">رياضيات، فيزياء، كيمياء، أحياء وجميع المواد العلمية</p>
+      </div>
+      <div class="spec-card-footer">
+        <span class="spec-services-count"><i class="fas fa-list"></i> 7+ خدمات علمية</span>
+        <span class="spec-go-btn">استعرض <i class="fas fa-arrow-left"></i></span>
+      </div>
+    </a>
+
+    <a href="business.html" class="spec-card spec-business reveal reveal-delay-1">
+      <div class="spec-card-header">
+        <div class="spec-card-icon">💼</div>
+        <h3 class="spec-card-title">الإداري والمحاسبي</h3>
+        <p class="spec-card-desc">إدارة أعمال، محاسبة، تسويق، موارد بشرية واقتصاد</p>
+      </div>
+      <div class="spec-card-footer">
+        <span class="spec-services-count"><i class="fas fa-list"></i> 9+ خدمات إدارية</span>
+        <span class="spec-go-btn">استعرض <i class="fas fa-arrow-left"></i></span>
+      </div>
+    </a>
+
+    <a href="preparatory.html" class="spec-card spec-prep reveal reveal-delay-2">
+      <div class="spec-card-header">
+        <div class="spec-card-icon">✍️</div>
+        <h3 class="spec-card-title">التحضيري والانتقالي</h3>
+        <p class="spec-card-desc">مواد السنة التحضيرية والمشتركة لجميع الجامعات السعودية</p>
+      </div>
+      <div class="spec-card-footer">
+        <span class="spec-services-count"><i class="fas fa-list"></i> 6+ خدمات</span>
+        <span class="spec-go-btn">استعرض <i class="fas fa-arrow-left"></i></span>
+      </div>
+    </a>
+
+    <a href="preparatory.html#english" class="spec-card spec-english reveal reveal-delay-3">
+      <div class="spec-card-header">
+        <div class="spec-card-icon">🇬🇧</div>
+        <h3 class="spec-card-title">اللغة الإنجليزية</h3>
+        <p class="spec-card-desc">لجميع التخصصات — كتابة، ترجمة، grammar وتحسين المستوى</p>
+      </div>
+      <div class="spec-card-footer">
+        <span class="spec-services-count"><i class="fas fa-list"></i> 6+ خدمات</span>
+        <span class="spec-go-btn">استعرض <i class="fas fa-arrow-left"></i></span>
+      </div>
+    </a>
+
+    <a href="preparatory.html#school" class="spec-card spec-school reveal reveal-delay-1">
+      <div class="spec-card-header">
+        <div class="spec-card-icon">🏫</div>
+        <h3 class="spec-card-title">طلاب المدارس</h3>
+        <p class="spec-card-desc">ابتدائي، متوسط، ثانوي — جميع المواد والمستويات بلا استثناء</p>
+      </div>
+      <div class="spec-card-footer">
+        <span class="spec-services-count"><i class="fas fa-list"></i> شامل كامل</span>
+        <span class="spec-go-btn">استعرض <i class="fas fa-arrow-left"></i></span>
+      </div>
+    </a>
+
+    <a href="ksu.html" class="spec-card reveal reveal-delay-2" style="border:2px solid rgba(244,185,66,0.35);background:linear-gradient(135deg,rgba(244,185,66,0.04),white);">
+      <div class="spec-card-header">
+        <div class="spec-card-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">🎓</div>
+        <h3 class="spec-card-title">مشاريع جامعة الملك سعود</h3>
+        <p class="spec-card-desc">المواد المشتركة — أسعار محددة مسبقًا وتسليم سريع مضمون</p>
+      </div>
+      <div class="spec-card-footer">
+        <span class="spec-services-count"><i class="fas fa-tag"></i> 11 مشروع بسعر محدد</span>
+        <span class="spec-go-btn" style="background:var(--grad-gold);color:var(--primary-dark);border-color:transparent;">الأسعار <i class="fas fa-arrow-left"></i></span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Can't find your specialization -->
+  <div class="reveal" style="max-width:780px;margin:50px auto 0;background:linear-gradient(135deg,var(--accent),#dde9ff);border-radius:var(--r-xl);padding:32px 36px;border:1.5px solid rgba(26,58,107,0.12);text-align:center;">
+    <div style="font-size:40px;margin-bottom:14px;">💬</div>
+    <h3 style="font-size:19px;font-weight:900;color:var(--primary);margin-bottom:10px;">لا تجد تخصصك هنا؟</h3>
+    <p style="font-size:14.5px;color:var(--text-muted);margin-bottom:22px;line-height:1.8;">نقدم دعمًا أكاديميًا لجميع التخصصات والمواد بدون استثناء. تواصل معنا مباشرة وسنوفر لك الخدمة المناسبة فوراً.</p>
+    <a href="https://wa.me/966533940866" target="_blank" class="btn btn-wa">
+      <i class="fab fa-whatsapp"></i> تواصل معنا الآن
+    </a>
+  </div>
+</section>
+
+<!-- ===== KSU PRICING PREVIEW ===== -->
+<section class="section" style="background:var(--bg-gray);">
+  <div class="section-header reveal">
+    <div class="section-chip" style="background:rgba(244,185,66,0.12);color:#92400e;border-color:rgba(244,185,66,0.25);">🎓 خاص بطلاب KSU</div>
+    <h2 class="section-title">أسعار مشاريع جامعة الملك سعود</h2>
+    <p class="section-subtitle">أسعار واضحة ومحددة مسبقًا لجميع مواد السنة الأولى المشتركة</p>
+  </div>
+  <div class="pricing-preview reveal">
+    <div class="price-preview-card">
+      <div class="ppc-emoji">🇬🇧</div>
+      <div class="ppc-name">مشروع CA الإنجليزي</div>
+      <div class="ppc-price">120 <small>ريال</small></div>
+    </div>
+    <div class="price-preview-card">
+      <div class="ppc-emoji">📑</div>
+      <div class="ppc-name">التكليف البحثي APA</div>
+      <div class="ppc-price">50 <small>ريال</small></div>
+    </div>
+    <div class="price-preview-card">
+      <div class="ppc-emoji">🎨</div>
+      <div class="ppc-name">عرض PowerPoint</div>
+      <div class="ppc-price">75 <small>ريال</small></div>
+    </div>
+    <div class="price-preview-card">
+      <div class="ppc-emoji">🧠</div>
+      <div class="ppc-name">خريطة ذهنية</div>
+      <div class="ppc-price">35-50 <small>ريال</small></div>
+    </div>
+    <div class="price-preview-card">
+      <div class="ppc-emoji">📊</div>
+      <div class="ppc-name">مشروع Excel</div>
+      <div class="ppc-price">100 <small>ريال</small></div>
+    </div>
+    <div class="price-preview-card">
+      <div class="ppc-emoji">🗃️</div>
+      <div class="ppc-name">قاعدة بيانات Access</div>
+      <div class="ppc-price">80 <small>ريال</small></div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:32px;" class="reveal">
+    <a href="ksu.html" class="btn btn-primary btn-lg">
+      <i class="fas fa-list"></i> عرض جميع المشاريع والأسعار
+    </a>
+  </div>
+</section>
+
+<!-- ===== UNIVERSITIES ===== -->
+<section class="section section-alt" id="universities">
+  <div class="section-header reveal">
+    <div class="section-chip">🏛️ شمولية كاملة</div>
+    <h2 class="section-title">نخدم جميع الجامعات والمستويات 🎓</h2>
+    <p class="section-subtitle">من مرحلة المدرسة حتى الدراسات العليا بلا استثناء في جميع أنحاء المملكة</p>
+  </div>
+  <div class="uni-cloud reveal">
+    <span class="uni-pill">🏛️ جامعة الملك سعود</span>
+    <span class="uni-pill">🏛️ جامعة الإمام</span>
+    <span class="uni-pill">🏛️ جامعة الأميرة نورة</span>
+    <span class="uni-pill">🏛️ الجامعة التقنية</span>
+    <span class="uni-pill">🏛️ جامعة الأزهر</span>
+    <span class="uni-pill">🏛️ الكليات الأهلية</span>
+    <span class="uni-pill">🏛️ الدبلومات التقنية</span>
+    <span class="uni-pill">🏛️ جامعة الملك عبدالعزيز</span>
+    <span class="uni-pill">🏛️ جامعة الملك فهد</span>
+    <span class="uni-pill">🏛️ جامعة طيبة</span>
+    <span class="uni-pill">🏛️ جامعة الجوف</span>
+    <span class="uni-pill">🏛️ جامعة القصيم</span>
+    <span class="uni-pill">🏛️ جامعة حائل</span>
+    <span class="uni-pill">🏛️ جامعة الباحة</span>
+    <span class="uni-pill">🏛️ جامعة الطائف</span>
+    <span class="uni-pill">📚 المدارس بكافة المستويات</span>
+    <span class="uni-pill">🎓 + جميع الجامعات السعودية</span>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="section" style="background:var(--bg-gray);" id="how">
+  <div class="section-header reveal">
+    <div class="section-chip">🔄 الطريقة</div>
+    <h2 class="section-title">كيف تحصل على خدمتك؟</h2>
+    <p class="section-subtitle">6 خطوات بسيطة تصلك للخدمة الأكاديمية المطلوبة بسهولة تامة</p>
+  </div>
+  <div class="how-grid">
+    <div class="step-card reveal reveal-delay-1">
+      <div class="step-num">1</div>
+      <div class="step-emoji">🔍</div>
+      <h4 class="step-title">اختر تخصصك</h4>
+      <p class="step-desc">تصفح التخصصات واختر القسم الأكاديمي المناسب لك</p>
+    </div>
+    <div class="step-card reveal reveal-delay-2">
+      <div class="step-num">2</div>
+      <div class="step-emoji">🛒</div>
+      <h4 class="step-title">أضف للسلة</h4>
+      <p class="step-desc">أضف الخدمات المطلوبة إلى سلة خدماتك بنقرة واحدة</p>
+    </div>
+    <div class="step-card reveal reveal-delay-3">
+      <div class="step-num">3</div>
+      <div class="step-emoji">📋</div>
+      <h4 class="step-title">أكمل البيانات</h4>
+      <p class="step-desc">أدخل بياناتك الشخصية وتفاصيل الطلب بدقة كاملة</p>
+    </div>
+    <div class="step-card reveal reveal-delay-1">
+      <div class="step-num">4</div>
+      <div class="step-emoji">💳</div>
+      <h4 class="step-title">حوّل المبلغ</h4>
+      <p class="step-desc">حوّل عبر بنك الإنماء وأرفق صورة الإيصال</p>
+    </div>
+    <div class="step-card reveal reveal-delay-2">
+      <div class="step-num">5</div>
+      <div class="step-emoji">💬</div>
+      <h4 class="step-title">تأكيد واتساب</h4>
+      <p class="step-desc">يصل طلبك تلقائيًا لفريقنا عبر واتساب مباشرةً</p>
+    </div>
+    <div class="step-card reveal reveal-delay-3">
+      <div class="step-num">6</div>
+      <div class="step-emoji">🎉</div>
+      <h4 class="step-title">استلم خدمتك</h4>
+      <p class="step-desc">تستلم في الوقت المحدد بأعلى جودة أكاديمية</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials-section" id="testimonials">
+  <div class="section-header reveal" style="position:relative;z-index:1;">
+    <div class="section-chip" style="background:rgba(255,255,255,0.1);color:#f4b942;border-color:rgba(244,185,66,0.25);">⭐ آراء الطلاب</div>
+    <h2 class="section-title" style="color:white;">ماذا يقول طلابنا؟</h2>
+    <p class="section-subtitle" style="color:rgba(255,255,255,0.65);">أكثر من 5000 طالب وطالبة وثقوا بمنصة سند التعليمية</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="t-card reveal">
+      <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <p class="t-text">«خدمة ممتازة وتسليم في الوقت المحدد! ساعدتني كثيرًا في تنسيق بحثي وتوثيق المراجع بطريقة APA. أنصح بها بشدة لكل الطلاب.»</p>
+      <div class="t-author">
+        <div class="t-avatar">👩‍🎓</div>
+        <div><div class="t-name">سارة الأحمدي</div><div class="t-uni">جامعة الأميرة نورة</div></div>
+      </div>
+    </div>
+    <div class="t-card reveal reveal-delay-2">
+      <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <p class="t-text">«العرض التقديمي الذي أعدوه لي كان احترافيًا جدًا وأستاذي أثنى عليه! فريق متميز وسريع في التنفيذ ويراعون ملاحظات الأستاذ.»</p>
+      <div class="t-author">
+        <div class="t-avatar">👨‍🎓</div>
+        <div><div class="t-name">فهد العتيبي</div><div class="t-uni">جامعة الملك سعود</div></div>
+      </div>
+    </div>
+    <div class="t-card reveal reveal-delay-3">
+      <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <p class="t-text">«الخريطة الذهنية كانت رائعة جدًا ومنظمة بشكل مبدع. ساعدتني في فهم المادة أفضل بكثير وحصلت على علامة كاملة!»</p>
+      <div class="t-author">
+        <div class="t-avatar">👩‍💻</div>
+        <div><div class="t-name">نورة المطيري</div><div class="t-uni">جامعة الإمام</div></div>
+      </div>
+    </div>
+    <div class="t-card reveal">
+      <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <p class="t-text">«مشروع Java تسلمته في الوقت المحدد وكان شغل عالي الجودة مع شرح كامل. سأتعامل معكم طوال فترة دراستي بلا شك.»</p>
+      <div class="t-author">
+        <div class="t-avatar">👨‍💻</div>
+        <div><div class="t-name">عبدالله الشمري</div><div class="t-uni">جامعة الملك فهد</div></div>
+      </div>
+    </div>
+    <div class="t-card reveal reveal-delay-2">
+      <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <p class="t-text">«Nursing Care Plan احترافي جداً مطابق لمتطلبات الكلية. فريق يفهم تخصصي ويعرف المصطلحات الطبية الصحيحة.»</p>
+      <div class="t-author">
+        <div class="t-avatar">👩‍⚕️</div>
+        <div><div class="t-name">ريم السعيد</div><div class="t-uni">كلية التمريض</div></div>
+      </div>
+    </div>
+    <div class="t-card reveal reveal-delay-3">
+      <div class="t-stars">⭐⭐⭐⭐⭐</div>
+      <p class="t-text">«مشروع Excel لـ KSU جاء مرتب ومنظم تماماً. سعره معقول جداً وتسليم في نفس اليوم! الأفضل من بين كل الخدمات.»</p>
+      <div class="t-author">
+        <div class="t-avatar">👨‍🎓</div>
+        <div><div class="t-name">خالد الدوسري</div><div class="t-uni">جامعة الملك سعود</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FREE TOOLS TEASER ===== -->
+<section class="section section-alt">
+  <div class="section-header reveal">
+    <div class="section-chip">🧰 مجاناً للطلاب</div>
+    <h2 class="section-title">أدوات مجانية تساعدك يومياً</h2>
+    <p class="section-subtitle">مجموعة أدوات ذكية لا تحتاج تسجيلاً — تعمل مباشرة من متصفحك</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;max-width:1100px;margin:0 auto;">
+    <div class="tool-card reveal reveal-delay-1">
+      <div class="tool-card-icon">🖼️</div>
+      <h3>تحويل صور → PDF</h3>
+      <p>ارفع صورك وحوّلها فورًا إلى ملف PDF مرتب ومناسب للتسليم</p>
+      <a href="tools.html" class="btn btn-outline-primary btn-sm">فتح الأداة ←</a>
+    </div>
+    <div class="tool-card reveal reveal-delay-2">
+      <div class="tool-card-icon">📊</div>
+      <h3>حاسبة المعدل GPA</h3>
+      <p>أضف المواد والساعات والدرجات واحسب معدلك فورياً ومنظماً</p>
+      <a href="tools.html#gpa" class="btn btn-outline-primary btn-sm">فتح الأداة ←</a>
+    </div>
+    <div class="tool-card reveal reveal-delay-3">
+      <div class="tool-card-icon">⏳</div>
+      <h3>مؤقت بومودورو</h3>
+      <p>جلسات تركيز واستراحة منظمة تساعدك على المذاكرة الفعّالة</p>
+      <a href="tools.html#pomodoro" class="btn btn-outline-primary btn-sm">فتح الأداة ←</a>
+    </div>
+    <div class="tool-card reveal reveal-delay-1">
+      <div class="tool-card-icon">🌍</div>
+      <h3>ترجمة النصوص</h3>
+      <p>ترجمة سريعة للنصوص وملفات TXT/CSV مع تنزيل الناتج</p>
+      <a href="tools.html#translator" class="btn btn-outline-primary btn-sm">فتح الأداة ←</a>
+    </div>
+    <div class="tool-card reveal reveal-delay-2">
+      <div class="tool-card-icon">🔗</div>
+      <h3>صانع QR Code</h3>
+      <p>حوّل أي رابط أو نص إلى QR Code فوري يمكن مشاركته</p>
+      <a href="tools.html#qr" class="btn btn-outline-primary btn-sm">فتح الأداة ←</a>
+    </div>
+    <div class="tool-card reveal reveal-delay-3">
+      <div class="tool-card-icon">📝</div>
+      <h3>عداد الكلمات</h3>
+      <p>عدّ الكلمات والجمل والأحرف في نصوصك فورياً ودقيقاً</p>
+      <a href="tools.html#wordcount" class="btn btn-outline-primary btn-sm">فتح الأداة ←</a>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:36px;" class="reveal">
+    <a href="tools.html" class="btn btn-primary btn-lg">
+      <i class="fas fa-screwdriver-wrench"></i> استعرض جميع الأدوات المجانية
+    </a>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section" style="background:var(--bg-gray);" id="contact">
+  <div class="section-header reveal">
+    <div class="section-chip">📞 تواصل معنا</div>
+    <h2 class="section-title">نحن هنا لمساعدتك دائماً 💬</h2>
+    <p class="section-subtitle">تواصل معنا مباشرة للحصول على مساعدة فورية أو للاستفسار عن أي خدمة</p>
+  </div>
+  <div style="display:flex;gap:22px;justify-content:center;flex-wrap:wrap;max-width:850px;margin:0 auto;">
+    <a href="https://wa.me/966533940866" target="_blank" class="contact-card reveal">
+      <div class="contact-icon" style="background:#25d366;"><i class="fab fa-whatsapp"></i></div>
+      <div>
+        <div style="font-size:11px;color:#6b7280;font-weight:700;margin-bottom:3px;">تواصل فوري — 24/7</div>
+        <div style="font-size:16px;font-weight:900;color:var(--primary);">واتساب مباشر</div>
+        <div style="font-size:13px;color:#6b7280;margin-top:2px;">+966 53 394 0866</div>
+      </div>
+    </a>
+    <a href="https://t.me/Helping_KSU/2697" target="_blank" class="contact-card reveal reveal-delay-2">
+      <div class="contact-icon" style="background:#229ed9;"><i class="fab fa-telegram"></i></div>
+      <div>
+        <div style="font-size:11px;color:#6b7280;font-weight:700;margin-bottom:3px;">قناة تيليجرام</div>
+        <div style="font-size:16px;font-weight:900;color:var(--primary);">@Helping_KSU</div>
+        <div style="font-size:13px;color:#6b7280;margin-top:2px;">آخر العروض والنماذج</div>
+      </div>
+    </a>
+  </div>
+
+  <!-- Bank Info Preview -->
+  <div class="cta-banner reveal" style="margin-top:50px;">
+    <div style="position:relative;z-index:1;">
+      <div style="font-size:46px;margin-bottom:16px;">🏦</div>
+      <h2>بيانات التحويل البنكي</h2>
+      <p>حوّل مباشرة بعد تأكيد طلبك عبر بنك الإنماء</p>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;justify-content:center;margin:24px 0;">
+        <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:16px 24px;text-align:right;min-width:200px;">
+          <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:4px;">البنك</div>
+          <div style="font-size:14px;font-weight:800;">بنك الإنماء</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:16px 24px;text-align:right;min-width:200px;">
+          <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:4px;">رقم الحساب</div>
+          <div style="font-size:14px;font-weight:800;direction:ltr;">68206067557000</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:16px 24px;text-align:right;min-width:280px;">
+          <div style="font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:4px;">الآيبان</div>
+          <div style="font-size:13px;font-weight:800;direction:ltr;">SA4905000068206067557000</div>
+        </div>
+      </div>
+      <a href="checkout.html" class="btn btn-primary btn-lg">
+        <i class="fas fa-shopping-cart"></i> إتمام الطلب الآن
+      </a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/site-upgrade.js"></script>
+</body>
+</html>

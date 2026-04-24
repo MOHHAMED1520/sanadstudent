@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>التحضيري والمدارس | منصة سند التعليمية</title>
+  <meta name="description" content="خدمات أكاديمية للسنة التحضيرية، اللغة الإنجليزية وطلاب المدارس — جميع المراحل والمستويات">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    .page-hero { background: linear-gradient(145deg, #060e1f 0%, #1a0e30 40%, #2e1065 100%); }
+    .tab-nav { display: flex; gap: 8px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+    .tab-btn { padding: 10px 26px; border-radius: 30px; font-size: 13.5px; font-weight: 800; cursor: pointer; border: 2px solid var(--border); background: white; color: var(--text-muted); transition: all 0.25s; font-family: var(--font); }
+    .tab-btn.active { background: var(--grad-primary); color: white; border-color: transparent; box-shadow: var(--shadow-md); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .service-card { background: white; border-radius: 20px; padding: 28px; border: 1px solid #ede9fe; box-shadow: 0 4px 20px rgba(109,40,217,0.07); transition: all 0.35s; position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, #7c3aed, #4c1d95); }
+    .service-card.eng::before { background: linear-gradient(180deg, #2563eb, #1d4ed8); }
+    .service-card.school::before { background: linear-gradient(180deg, #dc2626, #991b1b); }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 14px 44px rgba(109,40,217,0.15); border-color: #7c3aed; }
+    .service-emoji { font-size: 42px; margin-bottom: 12px; display: block; }
+    .service-title { font-size: 16px; font-weight: 900; color: var(--primary); margin-bottom: 8px; }
+    .service-desc { font-size: 13px; color: var(--text-muted); line-height: 1.75; margin-bottom: 14px; }
+    .service-features { list-style: none; margin-bottom: 18px; }
+    .service-features li { font-size: 12.5px; color: var(--text-body); padding: 3px 0; display: flex; align-items: center; gap: 8px; }
+    .service-features li::before { content: '✓'; color: #7c3aed; font-weight: 900; font-size: 13px; flex-shrink: 0; }
+    .btn-add { background: var(--grad-primary); color: white; border: none; padding: 10px 22px; border-radius: 30px; font-size: 13px; font-weight: 800; cursor: pointer; transition: all 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font); }
+    .btn-add:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-add.added { background: linear-gradient(135deg,#6b7280,#4b5563); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 22px; max-width: 1200px; margin: 0 auto; }
+    .page-hero-inner { max-width: 1200px; margin: 0 auto; padding: 70px 30px 90px; text-align: center; position: relative; z-index: 1; }
+    .page-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(109,40,217,0.15); border: 1px solid rgba(109,40,217,0.35); color: #c4b5fd; padding: 7px 20px; border-radius: 30px; font-size: 12.5px; font-weight: 700; margin-bottom: 24px; }
+    .page-hero h1 { font-size: clamp(26px, 4vw, 50px); font-weight: 900; color: white; margin-bottom: 14px; line-height: 1.2; }
+    .page-hero h1 span { color: #c4b5fd; }
+    .page-hero p { font-size: 15.5px; color: rgba(255,255,255,0.72); max-width: 580px; margin: 0 auto 36px; line-height: 1.8; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; justify-content: center; margin-bottom: 22px; flex-wrap: wrap; }
+    .breadcrumb a, .breadcrumb span { font-size: 12.5px; color: rgba(255,255,255,0.55); font-weight: 600; }
+    .breadcrumb a:hover { color: #c4b5fd; }
+    .breadcrumb .sep { color: rgba(255,255,255,0.3); }
+    .hero-stats-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+    .h-stat { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 14px 22px; text-align: center; }
+    .h-stat .hs-num { font-size: 24px; font-weight: 900; color: #c4b5fd; }
+    .h-stat .hs-label { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+    @media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } .page-hero-inner { padding: 50px 20px 60px; } }
+  </style>
+</head>
+<body>
+<div id="header-placeholder" data-page="spec"></div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-bg"><div class="orb orb-1" style="background:#7c3aed;"></div><div class="orb orb-2" style="background:#2563eb;"></div><div class="grid-pattern"></div></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">🏠 الرئيسية</a><span class="sep">›</span>
+      <a href="specializations.html">التخصصات</a><span class="sep">›</span>
+      <span style="color:#c4b5fd;">التحضيري والمدارس</span>
+    </div>
+    <div class="page-hero-badge"><span>✍️</span> التحضيري والانتقالي والمدارس</div>
+    <h1>خدمات <span>التحضيري واللغة الإنجليزية</span> 🎓</h1>
+    <p>دعم أكاديمي شامل للسنة التحضيرية والانتقالية، تعليم اللغة الإنجليزية وجميع مراحل المدارس في المملكة</p>
+    <div class="hero-stats-row">
+      <div class="h-stat"><div class="hs-num">3</div><div class="hs-label">أقسام رئيسية</div></div>
+      <div class="h-stat"><div class="hs-num">+800</div><div class="hs-label">طالب استفاد</div></div>
+      <div class="h-stat"><div class="hs-num">جميع</div><div class="hs-label">المستويات</div></div>
+      <div class="h-stat"><div class="hs-num">24h</div><div class="hs-label">متوسط التسليم</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TABS -->
+<section class="section section-alt" id="preparatory">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('prep', this)">✍️ السنة التحضيرية</button>
+    <button class="tab-btn" id="english-tab" onclick="switchTab('english', this)">🇬🇧 اللغة الإنجليزية</button>
+    <button class="tab-btn" id="school-tab" onclick="switchTab('school', this)">🏫 طلاب المدارس</button>
+  </div>
+
+  <!-- PREPARATORY TAB -->
+  <div class="tab-content active" id="tab-prep">
+    <div class="section-header reveal">
+      <div class="section-chip" style="background:#ede9fe;color:#4c1d95;border-color:rgba(124,58,237,0.25);">✍️ السنة التحضيرية</div>
+      <h2 class="section-title">مواد السنة التحضيرية والانتقالية</h2>
+      <p class="section-subtitle">دعم كامل لجميع مواد السنة الأولى المشتركة في الجامعات السعودية</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-emoji">🇬🇧</span>
+        <div class="service-title">مواد اللغة الإنجليزية التحضيري</div>
+        <div class="service-desc">حل واجبات ومشاريع مادة الإنجليزية في السنة التحضيرية — Essays، Reports، Listening وأكثر</div>
+        <div class="service-price" style="background:#ede9fe;color:#4c1d95;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>Writing Skills متقدمة</li><li>Reading Comprehension</li><li>Grammar Practice</li><li>Listening Tasks</li></ul>
+        <button class="btn-add" id="btn-prep-eng" onclick="addToCart('prep-eng','إنجليزي تحضيري',0,'🇬🇧')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-emoji">📐</span>
+        <div class="service-title">الرياضيات التحضيرية</div>
+        <div class="service-desc">حل جميع مسائل الرياضيات في السنة التحضيرية — الجبر، حساب المثلثات، الدوال والتحليل</div>
+        <div class="service-price" style="background:#ede9fe;color:#4c1d95;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>الجبر والمعادلات</li><li>حساب المثلثات</li><li>التفاضل المبدئي</li><li>شرح مبسط</li></ul>
+        <button class="btn-add" id="btn-prep-math" onclick="addToCart('prep-math','رياضيات تحضيري',0,'📐')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-emoji">🖥️</span>
+        <div class="service-title">مادة الحاسب التحضيري</div>
+        <div class="service-desc">تكاليف مادة الحاسب ومهارات الحاسب — Word، Excel، PowerPoint، Access وبرمجة أساسية</div>
+        <div class="service-price" style="background:#ede9fe;color:#4c1d95;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>Microsoft Office كامل</li><li>مقدمة البرمجة</li><li>الخوارزميات البسيطة</li><li>تقارير الحاسب</li></ul>
+        <button class="btn-add" id="btn-prep-cs" onclick="addToCart('prep-cs','حاسب تحضيري',0,'🖥️')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-emoji">⚗️</span>
+        <div class="service-title">الكيمياء والفيزياء التحضيري</div>
+        <div class="service-desc">حل مسائل الكيمياء والفيزياء في السنة التحضيرية للتخصصات العلمية والصحية</div>
+        <div class="service-price" style="background:#ede9fe;color:#4c1d95;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>كيمياء عامة</li><li>فيزياء عامة</li><li>حل المسائل التطبيقية</li><li>شرح مبسط</li></ul>
+        <button class="btn-add" id="btn-prep-sci" onclick="addToCart('prep-sci','علوم تحضيري',0,'⚗️')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-emoji">📝</span>
+        <div class="service-title">مهارات التفكير والتواصل</div>
+        <div class="service-desc">مادة مهارات التفكير الناقد والتواصل — تكاليف، مشاريع، عروض وأبحاث المستوى التحضيري</div>
+        <div class="service-price" style="background:#ede9fe;color:#4c1d95;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>التفكير الناقد</li><li>مهارات التواصل</li><li>حل المشكلات</li><li>العروض التقديمية</li></ul>
+        <button class="btn-add" id="btn-prep-think" onclick="addToCart('prep-think','مهارات تحضيري',0,'📝')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <span class="service-emoji">💬</span>
+        <div class="service-title">أي مادة تحضيرية أخرى</div>
+        <div class="service-desc">لديك مادة تحضيرية غير مذكورة؟ نغطي جميع المواد المشتركة في الجامعات السعودية</div>
+        <div class="service-price" style="background:#ede9fe;color:#4c1d95;"><i class="fas fa-star"></i> مخصص لك</div>
+        <ul class="service-features"><li>كل جامعات المملكة</li><li>جميع المواد المشتركة</li><li>سعر تنافسي</li><li>تواصل فوري</li></ul>
+        <a href="https://wa.me/966533940866" target="_blank" class="btn-add" style="text-decoration:none;background:linear-gradient(135deg,#25d366,#1baa52);"><i class="fab fa-whatsapp"></i> تواصل للاستفسار</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENGLISH TAB -->
+  <div class="tab-content" id="tab-english" id="english">
+    <div class="section-header reveal">
+      <div class="section-chip" style="background:#dbeafe;color:#1e3a8a;border-color:rgba(37,99,235,0.25);">🇬🇧 اللغة الإنجليزية</div>
+      <h2 class="section-title">خدمات اللغة الإنجليزية لجميع التخصصات</h2>
+      <p class="section-subtitle">كتابة، ترجمة، تحرير وتحسين مستوى اللغة الإنجليزية لطلاب جميع الكليات</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card eng reveal reveal-delay-1" style="border-color:#bfdbfe;">
+        <span class="service-emoji">✍️</span>
+        <div class="service-title">Essay Writing احترافية</div>
+        <div class="service-desc">كتابة مقالات إنجليزية أكاديمية — Argumentative, Descriptive, Expository, Cause & Effect</div>
+        <div class="service-price" style="background:#dbeafe;color:#1e3a8a;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>Academic Writing Level</li><li>Introduction + Body + Conclusion</li><li>Grammar Proofreading</li><li>Plagiarism-Free</li></ul>
+        <button class="btn-add" id="btn-essay" onclick="addToCart('essay','Essay إنجليزية',0,'✍️')" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card eng reveal reveal-delay-2" style="border-color:#bfdbfe;">
+        <span class="service-emoji">🔤</span>
+        <div class="service-title">Grammar & Language Correction</div>
+        <div class="service-desc">تصحيح وتحسين القواعد اللغوية، Proofreading، Paraphrasing وإعادة صياغة النصوص</div>
+        <div class="service-price" style="background:#dbeafe;color:#1e3a8a;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>Grammar Correction</li><li>Vocabulary Enhancement</li><li>Paraphrasing</li><li>Academic Style</li></ul>
+        <button class="btn-add" id="btn-grammar" onclick="addToCart('grammar','تصحيح Grammar',0,'🔤')" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card eng reveal reveal-delay-3" style="border-color:#bfdbfe;">
+        <span class="service-emoji">🌍</span>
+        <div class="service-title">ترجمة عربي ↔ إنجليزي</div>
+        <div class="service-desc">ترجمة احترافية دقيقة للنصوص والأبحاث والتقارير الأكاديمية في جميع التخصصات</div>
+        <div class="service-price" style="background:#dbeafe;color:#1e3a8a;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>ترجمة أكاديمية دقيقة</li><li>المصطلحات التخصصية</li><li>مراجعة وتدقيق</li><li>جميع التخصصات</li></ul>
+        <button class="btn-add" id="btn-trans" onclick="addToCart('trans','ترجمة إنجليزي',0,'🌍')" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card eng reveal reveal-delay-1" style="border-color:#bfdbfe;">
+        <span class="service-emoji">📄</span>
+        <div class="service-title">مشروع CA الإنجليزي</div>
+        <div class="service-desc">إعداد مشروع CA الإنجليزي لطلاب الجامعات السعودية بالمعايير الأكاديمية الصحيحة</div>
+        <div class="service-price" style="background:#dbeafe;color:#1e3a8a;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>Academic Report Format</li><li>References & Citations</li><li>Professional Writing</li><li>Formatting Standards</li></ul>
+        <button class="btn-add" id="btn-ca-eng" onclick="addToCart('ca-eng','مشروع CA إنجليزي',0,'📄')" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card eng reveal reveal-delay-2" style="border-color:#bfdbfe;">
+        <span class="service-emoji">🎤</span>
+        <div class="service-title">Presentation Script بالإنجليزية</div>
+        <div class="service-desc">كتابة نص العرض التقديمي باللغة الإنجليزية مع تصميم الشرائح والملاحظات</div>
+        <div class="service-price" style="background:#dbeafe;color:#1e3a8a;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>Speaker Notes</li><li>Professional Slides</li><li>Academic Language</li><li>Visual Design</li></ul>
+        <button class="btn-add" id="btn-pres-eng" onclick="addToCart('pres-eng','عرض إنجليزي',0,'🎤')" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card eng reveal reveal-delay-3" style="border-color:#bfdbfe;background:linear-gradient(135deg,#eff6ff,#dbeafe);">
+        <span class="service-emoji">💬</span>
+        <div class="service-title">خدمة إنجليزية مخصصة</div>
+        <div class="service-desc">أي تكليف إنجليزي غير مذكور — نقدم جميع الخدمات الإنجليزية الأكاديمية</div>
+        <div class="service-price" style="background:#dbeafe;color:#1e3a8a;"><i class="fas fa-star"></i> مخصص لك</div>
+        <ul class="service-features"><li>أي مستوى إنجليزي</li><li>جميع أنواع التكاليف</li><li>جودة مضمونة</li><li>تواصل فوري</li></ul>
+        <a href="https://wa.me/966533940866" target="_blank" class="btn-add" style="text-decoration:none;background:linear-gradient(135deg,#25d366,#1baa52);"><i class="fab fa-whatsapp"></i> تواصل للاستفسار</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCHOOL TAB -->
+  <div class="tab-content" id="tab-school" id="school">
+    <div class="section-header reveal">
+      <div class="section-chip" style="background:#fee2e2;color:#7f1d1d;border-color:rgba(220,38,38,0.25);">🏫 طلاب المدارس</div>
+      <h2 class="section-title">خدمات أكاديمية لطلاب المدارس</h2>
+      <p class="section-subtitle">مساعدة أكاديمية لجميع مراحل التعليم الابتدائي والمتوسط والثانوي</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card school reveal reveal-delay-1" style="border-color:#fecaca;">
+        <span class="service-emoji">🔢</span>
+        <div class="service-title">الرياضيات المدرسية</div>
+        <div class="service-desc">حل واجبات وتكاليف الرياضيات لجميع مراحل المدرسة — ابتدائي ومتوسط وثانوي</div>
+        <div class="service-price" style="background:#fee2e2;color:#7f1d1d;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>الابتدائي والمتوسط</li><li>المرحلة الثانوية</li><li>شرح خطوات الحل</li><li>تسليم سريع</li></ul>
+        <button class="btn-add" id="btn-school-math" onclick="addToCart('school-math','رياضيات مدرسة',0,'🔢')" style="background:linear-gradient(135deg,#dc2626,#991b1b);"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card school reveal reveal-delay-2" style="border-color:#fecaca;">
+        <span class="service-emoji">📖</span>
+        <div class="service-title">اللغة العربية والإنجليزية</div>
+        <div class="service-desc">واجبات ومشاريع اللغة العربية والإنجليزية لجميع مراحل التعليم المدرسي في المملكة</div>
+        <div class="service-price" style="background:#fee2e2;color:#7f1d1d;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>قواعد اللغة العربية</li><li>الإنجليزية المدرسية</li><li>التعبير والإنشاء</li><li>الاختبارات</li></ul>
+        <button class="btn-add" id="btn-school-lang" onclick="addToCart('school-lang','لغة مدرسة',0,'📖')" style="background:linear-gradient(135deg,#dc2626,#991b1b);"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card school reveal reveal-delay-3" style="border-color:#fecaca;">
+        <span class="service-emoji">🧪</span>
+        <div class="service-title">العلوم والأحياء المدرسية</div>
+        <div class="service-desc">حل تكاليف مواد العلوم — كيمياء، فيزياء، أحياء لجميع مراحل المدرسة الثانوية</div>
+        <div class="service-price" style="background:#fee2e2;color:#7f1d1d;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>الكيمياء الثانوية</li><li>الفيزياء الثانوية</li><li>الأحياء</li><li>علوم الأرض</li></ul>
+        <button class="btn-add" id="btn-school-sci" onclick="addToCart('school-sci','علوم مدرسة',0,'🧪')" style="background:linear-gradient(135deg,#dc2626,#991b1b);"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card school reveal reveal-delay-1" style="border-color:#fecaca;">
+        <span class="service-emoji">🌎</span>
+        <div class="service-title">الدراسات الاجتماعية والتاريخ</div>
+        <div class="service-desc">واجبات الاجتماعيات، التاريخ، الجغرافيا، التربية الوطنية والمواد الإنسانية المدرسية</div>
+        <div class="service-price" style="background:#fee2e2;color:#7f1d1d;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>التاريخ والحضارات</li><li>الجغرافيا</li><li>التربية الوطنية</li><li>الدراسات الإسلامية</li></ul>
+        <button class="btn-add" id="btn-school-soc" onclick="addToCart('school-soc','اجتماعيات مدرسة',0,'🌎')" style="background:linear-gradient(135deg,#dc2626,#991b1b);"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card school reveal reveal-delay-2" style="border-color:#fecaca;">
+        <span class="service-emoji">💻</span>
+        <div class="service-title">الحاسب والمعلوماتية</div>
+        <div class="service-desc">مادة الحاسب المدرسية — Office، مفاهيم الحاسب، برمجة أساسية للمرحلة المتوسطة والثانوية</div>
+        <div class="service-price" style="background:#fee2e2;color:#7f1d1d;"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+        <ul class="service-features"><li>Microsoft Office</li><li>مفاهيم الحاسب</li><li>البرمجة المدرسية</li><li>الأمن الإلكتروني</li></ul>
+        <button class="btn-add" id="btn-school-comp" onclick="addToCart('school-comp','حاسب مدرسة',0,'💻')" style="background:linear-gradient(135deg,#dc2626,#991b1b);"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+      </div>
+      <div class="service-card school reveal reveal-delay-3" style="background:linear-gradient(135deg,#fff5f5,#fee2e2);border-color:rgba(220,38,38,0.3);">
+        <span class="service-emoji">💬</span>
+        <div class="service-title">أي مادة مدرسية أخرى</div>
+        <div class="service-desc">مادة غير مذكورة؟ نساعد في جميع المواد المدرسية لجميع المراحل دون استثناء</div>
+        <div class="service-price" style="background:#fee2e2;color:#7f1d1d;"><i class="fas fa-star"></i> شامل كامل</div>
+        <ul class="service-features"><li>جميع المراحل المدرسية</li><li>أي مادة دراسية</li><li>سعر مناسب</li><li>تسليم سريع</li></ul>
+        <a href="https://wa.me/966533940866" target="_blank" class="btn-add" style="text-decoration:none;background:linear-gradient(135deg,#25d366,#1baa52);"><i class="fab fa-whatsapp"></i> تواصل للاستفسار</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:var(--bg-gray);">
+  <div class="cta-banner reveal" style="max-width:900px;margin:0 auto;">
+    <div style="font-size:50px;margin-bottom:16px;position:relative;z-index:1;">✍️</div>
+    <h2 style="font-size:26px;font-weight:900;margin-bottom:12px;">جاهز للحصول على مساعدتك الأكاديمية؟</h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.72);margin-bottom:28px;">أضف الخدمات للسلة وأتمم طلبك أو تواصل معنا مباشرة للاستفسار</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="checkout.html" class="btn btn-primary btn-lg"><i class="fas fa-shopping-cart"></i> إتمام الطلب</a>
+      <a href="https://wa.me/966533940866" target="_blank" class="btn btn-wa btn-lg"><i class="fab fa-whatsapp"></i> واتساب مباشر</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/site-upgrade.js"></script>
+<script>
+function switchTab(tabId, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tabId).classList.add('active');
+  btn.classList.add('active');
+}
+// Handle hash navigation
+window.addEventListener('load', () => {
+  const hash = window.location.hash;
+  if (hash === '#english') switchTab('english', document.getElementById('english-tab'));
+  if (hash === '#school') switchTab('school', document.getElementById('school-tab'));
+});
+</script>
+</body>
+</html>

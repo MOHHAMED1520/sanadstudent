@@ -1,0 +1,13 @@
+# Build & package artifacts
+*.zip
+*.tar.gz
+node_modules/
+
+# Extracted source archive (keep only the built site)
+extracted/
+
+# Python scripts used during dev
+update_site_patch.py
+
+# Logs
+*.log

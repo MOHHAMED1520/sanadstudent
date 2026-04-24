@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>المسار العلمي | منصة سند التعليمية</title>
+  <meta name="description" content="خدمات أكاديمية متخصصة للمسار العلمي — رياضيات، فيزياء، كيمياء، أحياء وجميع المواد العلمية">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    .page-hero { background: linear-gradient(145deg, #060e1f 0%, #0c1f30 40%, #0f3d5c 100%); }
+    .service-card { background: white; border-radius: 20px; padding: 28px; border: 1px solid #bae6fd; box-shadow: 0 4px 20px rgba(14,165,233,0.07); transition: all 0.35s; position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: linear-gradient(180deg, #0ea5e9, #0369a1); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(14,165,233,0.18); border-color: #0ea5e9; }
+    .service-emoji { font-size: 44px; margin-bottom: 14px; display: block; }
+    .service-title { font-size: 17px; font-weight: 900; color: var(--primary); margin-bottom: 8px; }
+    .service-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.75; margin-bottom: 16px; }
+    .service-price { display: inline-flex; align-items: center; gap: 6px; background: #e0f2fe; color: #0c4a6e; padding: 5px 14px; border-radius: 30px; font-size: 12.5px; font-weight: 800; margin-bottom: 16px; }
+    .service-features { list-style: none; margin-bottom: 20px; }
+    .service-features li { font-size: 13px; color: var(--text-body); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+    .service-features li::before { content: '✓'; color: #0ea5e9; font-weight: 900; font-size: 14px; flex-shrink: 0; }
+    .btn-add { background: linear-gradient(135deg, #0ea5e9, #0369a1); color: white; border: none; padding: 11px 24px; border-radius: 30px; font-size: 13.5px; font-weight: 800; cursor: pointer; transition: all 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font); }
+    .btn-add:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,165,233,0.45); }
+    .btn-add.added { background: linear-gradient(135deg, #6b7280, #4b5563); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .page-hero-inner { max-width: 1200px; margin: 0 auto; padding: 70px 30px 90px; text-align: center; position: relative; z-index: 1; }
+    .page-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(14,165,233,0.15); border: 1px solid rgba(14,165,233,0.35); color: #7dd3fc; padding: 7px 20px; border-radius: 30px; font-size: 12.5px; font-weight: 700; margin-bottom: 24px; }
+    .page-hero h1 { font-size: clamp(28px, 4.5vw, 52px); font-weight: 900; color: white; margin-bottom: 16px; line-height: 1.2; }
+    .page-hero h1 span { color: #7dd3fc; }
+    .page-hero p { font-size: 16px; color: rgba(255,255,255,0.72); max-width: 580px; margin: 0 auto 36px; line-height: 1.8; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumb a, .breadcrumb span { font-size: 12.5px; color: rgba(255,255,255,0.55); font-weight: 600; }
+    .breadcrumb a:hover { color: #7dd3fc; }
+    .breadcrumb .sep { color: rgba(255,255,255,0.3); }
+    .hero-stats-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+    .h-stat { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 16px 24px; text-align: center; backdrop-filter: blur(10px); }
+    .h-stat .hs-num { font-size: 26px; font-weight: 900; color: #7dd3fc; }
+    .h-stat .hs-label { font-size: 11.5px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+    .subjects-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; justify-content: center; }
+    .subject-pill { background: white; border: 1.5px solid rgba(14,165,233,0.3); border-radius: 30px; padding: 8px 18px; font-size: 13px; font-weight: 700; color: #0c4a6e; display: flex; align-items: center; gap: 7px; transition: all 0.25s; }
+    .subject-pill:hover { background: #0ea5e9; color: white; border-color: #0ea5e9; transform: translateY(-2px); }
+    .cta-wa { background: linear-gradient(135deg, #0c1f30, #0f3d5c); border-radius: 24px; padding: 48px; text-align: center; color: white; margin-top: 60px; }
+    @media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } .page-hero-inner { padding: 50px 20px 60px; } }
+  </style>
+</head>
+<body>
+<div id="header-placeholder" data-page="spec"></div>
+
+<section class="page-hero">
+  <div class="hero-bg"><div class="orb orb-1" style="background:#0ea5e9;"></div><div class="orb orb-2" style="background:#06b6d4;"></div><div class="grid-pattern"></div></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">🏠 الرئيسية</a><span class="sep">›</span>
+      <a href="specializations.html">التخصصات</a><span class="sep">›</span>
+      <span style="color:#7dd3fc;">المسار العلمي</span>
+    </div>
+    <div class="page-hero-badge"><span>🔬</span> المسار العلمي</div>
+    <h1>خدمات أكاديمية للـ<span>تخصصات العلمية</span> 📊</h1>
+    <p>حلول أكاديمية متخصصة لطلاب الرياضيات، الفيزياء، الكيمياء، الأحياء والإحصاء في جميع الجامعات السعودية</p>
+    <div class="hero-stats-row">
+      <div class="h-stat"><div class="hs-num">7+</div><div class="hs-label">خدمة علمية</div></div>
+      <div class="h-stat"><div class="hs-num">+900</div><div class="hs-label">طالب علمي</div></div>
+      <div class="h-stat"><div class="hs-num">6+</div><div class="hs-label">تخصص علمي</div></div>
+      <div class="h-stat"><div class="hs-num">24h</div><div class="hs-label">متوسط التسليم</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border-radius:20px;padding:32px;margin-bottom:60px;border:1px solid rgba(14,165,233,0.2);" class="reveal">
+    <h3 style="font-size:16px;font-weight:900;color:#0c4a6e;margin-bottom:4px;"><i class="fas fa-flask"></i> المواد والتخصصات العلمية التي نغطيها</h3>
+    <p style="font-size:13px;color:#6b7280;">نقدم خدمات أكاديمية شاملة لجميع مواد المسار العلمي</p>
+    <div class="subjects-grid">
+      <div class="subject-pill">📐 الرياضيات</div>
+      <div class="subject-pill">⚡ الفيزياء</div>
+      <div class="subject-pill">🧪 الكيمياء</div>
+      <div class="subject-pill">🧬 الأحياء</div>
+      <div class="subject-pill">📊 الإحصاء</div>
+      <div class="subject-pill">🔢 التفاضل والتكامل</div>
+      <div class="subject-pill">📉 الجبر الخطي</div>
+      <div class="subject-pill">🌊 الميكانيكا</div>
+      <div class="subject-pill">⚗️ الكيمياء العضوية</div>
+      <div class="subject-pill">🔬 علم الخلية</div>
+      <div class="subject-pill">🌐 علوم الأرض</div>
+      <div class="subject-pill">☢️ الفيزياء النووية</div>
+    </div>
+  </div>
+
+  <div class="section-header reveal">
+    <div class="section-chip" style="background:#e0f2fe;color:#0c4a6e;border-color:rgba(14,165,233,0.25);">🔬 الخدمات العلمية</div>
+    <h2 class="section-title">خدمات المسار العلمي</h2>
+    <p class="section-subtitle">حلول أكاديمية متكاملة لجميع المواد والتخصصات العلمية</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-emoji">📐</span>
+      <div class="service-title">حل مسائل الرياضيات</div>
+      <div class="service-desc">حل تفصيلي لجميع مسائل الرياضيات — تفاضل، تكامل، جبر خطي، معادلات تفاضلية، ومعادلات عادية</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>شرح خطوات الحل بالتفصيل</li><li>حل بالخط أو LaTeX</li><li>جميع مستويات الرياضيات</li><li>مراجعة وتصحيح</li>
+      </ul>
+      <button class="btn-add" id="btn-math" onclick="addToCart('math','حل مسائل رياضيات',0,'📐')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-emoji">⚡</span>
+      <div class="service-title">مسائل الفيزياء والميكانيكا</div>
+      <div class="service-desc">حل مسائل الفيزياء — ميكانيكا، كهرومغناطيسية، بصريات، موجات، ديناميكا حرارية وفيزياء حديثة</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>الاستدلال والمعادلات</li><li>رسوم توضيحية</li><li>جميع مستويات الفيزياء</li><li>ربط النظرية بالتطبيق</li>
+      </ul>
+      <button class="btn-add" id="btn-physics" onclick="addToCart('physics','مسائل فيزياء',0,'⚡')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <span class="service-emoji">🧪</span>
+      <div class="service-title">تقارير الكيمياء والمختبر</div>
+      <div class="service-desc">كتابة تقارير المختبر الكيميائية — الهدف، النظرية، الإجراءات، النتائج، الحسابات والتحليل</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>Lab Reports احترافية</li><li>حسابات دقيقة</li><li>تحليل النتائج</li><li>الخطأ والتحسين</li>
+      </ul>
+      <button class="btn-add" id="btn-chem" onclick="addToCart('chem','تقرير كيمياء',0,'🧪')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-emoji">📊</span>
+      <div class="service-title">الإحصاء والتحليل الإحصائي</div>
+      <div class="service-desc">حل مسائل الإحصاء، تحليل البيانات، SPSS، R، Excel واختبارات الفرضيات</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>الإحصاء الوصفي والاستدلالي</li><li>تحليل SPSS / R</li><li>اختبارات الفرضيات</li><li>رسوم بيانية احترافية</li>
+      </ul>
+      <button class="btn-add" id="btn-stats" onclick="addToCart('stats','تحليل إحصائي',0,'📊')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-emoji">🧬</span>
+      <div class="service-title">أبحاث الأحياء والعلوم</div>
+      <div class="service-desc">كتابة تقارير وأبحاث في الأحياء، علم الوراثة، الخلية، الميكروبيولوجيا والبيئة</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>مراجعة أدبيات حديثة</li><li>توثيق علمي دقيق</li><li>رسوم وصور علمية</li><li>مصطلحات علمية صحيحة</li>
+      </ul>
+      <button class="btn-add" id="btn-bio" onclick="addToCart('bio','بحث أحياء علمي',0,'🧬')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <span class="service-emoji">🎯</span>
+      <div class="service-title">عروض علمية وخرائط ذهنية</div>
+      <div class="service-desc">تصميم عروض PowerPoint علمية وخرائط ذهنية تفصيلية للمواد العلمية بتصميم بصري احترافي</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>تصميم بصري مميز</li><li>محتوى علمي دقيق</li><li>صور ورسوم بيانية</li><li>ملاحظات المقدم</li>
+      </ul>
+      <button class="btn-add" id="btn-sci-ppt" onclick="addToCart('sci-ppt','عرض علمي',0,'🎯')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-emoji">📝</span>
+      <div class="service-title">تكاليف وواجبات علمية</div>
+      <div class="service-desc">حل جميع الواجبات الأسبوعية والتكاليف والاختبارات القصيرة لجميع المواد العلمية</div>
+      <div class="service-price"><i class="fas fa-tag"></i> السعر يُحدَّد حسب الطلب</div>
+      <ul class="service-features">
+        <li>جميع المواد العلمية</li><li>تسليم سريع</li><li>حلول مشروحة</li><li>دقة علمية مضمونة</li>
+      </ul>
+      <button class="btn-add" id="btn-sci-hw" onclick="addToCart('sci-hw','واجبات علمية',0,'📝')"><i class="fas fa-cart-plus"></i> أضف للسلة</button>
+    </div>
+    <div class="service-card reveal reveal-delay-2" style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe);border-color:rgba(14,165,233,0.3);">
+      <span class="service-emoji">💬</span>
+      <div class="service-title">خدمة مخصصة لتخصصك</div>
+      <div class="service-desc">مادة أو موضوع غير مذكور؟ نغطي جميع المواد العلمية في كل المستويات الدراسية</div>
+      <div class="service-price" style="background:#e0f2fe;color:#0c4a6e;"><i class="fas fa-star"></i> مخصص لك</div>
+      <ul class="service-features"><li>أي مادة علمية</li><li>أي مستوى دراسي</li><li>سعر تنافسي</li><li>تواصل فوري</li></ul>
+      <a href="https://wa.me/966533940866" target="_blank" class="btn-add" style="text-decoration:none;background:linear-gradient(135deg,#25d366,#1baa52);"><i class="fab fa-whatsapp"></i> تواصل للاستفسار</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg-gray);">
+  <div class="cta-wa reveal" style="max-width:900px;margin:0 auto;">
+    <div style="font-size:50px;margin-bottom:16px;position:relative;z-index:1;">🔬</div>
+    <h2 style="font-size:28px;font-weight:900;margin-bottom:12px;position:relative;z-index:1;">جاهز لحل تكاليفك العلمية؟</h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.72);margin-bottom:28px;position:relative;z-index:1;">أضف الخدمات للسلة وأتمم طلبك أو تواصل معنا مباشرة</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
+      <a href="checkout.html" class="btn btn-primary btn-lg"><i class="fas fa-shopping-cart"></i> إتمام الطلب</a>
+      <a href="https://wa.me/966533940866" target="_blank" class="btn btn-wa btn-lg"><i class="fab fa-whatsapp"></i> واتساب مباشر</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/site-upgrade.js"></script>
+</body>
+</html>

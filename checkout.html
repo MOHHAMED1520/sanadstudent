@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إتمام الطلب | منصة سند التعليمية</title>
+  <meta name="description" content="إتمام الطلب وإرسال التفاصيل — منصة سند التعليمية">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { background: var(--bg-gray); }
+    .checkout-wrap { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
+    .checkout-grid { display: grid; grid-template-columns: 1fr 380px; gap: 28px; }
+    .checkout-main { display: flex; flex-direction: column; gap: 22px; }
+    .co-card { background: white; border-radius: 22px; padding: 28px 30px; border: 1.5px solid var(--border); box-shadow: var(--shadow-sm); }
+    .co-card-title { font-size: 17px; font-weight: 900; color: var(--primary); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 12.5px; font-weight: 800; color: var(--text-dark); }
+    .form-label span { color: var(--danger); margin-right: 2px; }
+    .form-input { padding: 11px 16px; border: 1.5px solid var(--border); border-radius: 12px; font-size: 14px; font-family: var(--font); outline: none; transition: all 0.2s; direction: rtl; background: white; color: var(--text-dark); }
+    .form-input:focus { border-color: var(--primary-light); box-shadow: 0 0 0 3px rgba(37,84,160,0.08); }
+    .form-input::placeholder { color: #9ca3af; font-size: 13px; }
+    textarea.form-input { resize: vertical; min-height: 90px; }
+    .form-select { padding: 11px 16px; border: 1.5px solid var(--border); border-radius: 12px; font-size: 14px; font-family: var(--font); outline: none; background: white; cursor: pointer; }
+    .form-select:focus { border-color: var(--primary-light); }
+    .priority-options { display: flex; gap: 10px; flex-wrap: wrap; }
+    .priority-opt { flex: 1; min-width: 100px; border: 2px solid var(--border); border-radius: 14px; padding: 12px 16px; text-align: center; cursor: pointer; transition: all 0.25s; }
+    .priority-opt.selected { border-color: var(--primary-light); background: var(--accent); }
+    .priority-opt input { display: none; }
+    .priority-opt .p-icon { font-size: 22px; margin-bottom: 4px; }
+    .priority-opt .p-name { font-size: 12.5px; font-weight: 800; color: var(--primary); }
+    .priority-opt .p-price { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .cart-items-preview { display: flex; flex-direction: column; gap: 10px; }
+    .cip-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--bg-gray); border-radius: 12px; border: 1px solid var(--border); }
+    .cip-emoji { font-size: 24px; }
+    .cip-info { flex: 1; }
+    .cip-name { font-size: 13px; font-weight: 800; color: var(--text-dark); }
+    .cip-price { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
+    .cip-remove { background: none; border: none; cursor: pointer; color: var(--danger); font-size: 14px; padding: 4px; border-radius: 6px; transition: background 0.2s; }
+    .cip-remove:hover { background: #fee2e2; }
+    .cart-empty-checkout { text-align: center; padding: 40px 20px; }
+    .cart-empty-checkout .ce-icon { font-size: 56px; margin-bottom: 14px; }
+    .cart-empty-checkout p { font-size: 15px; color: var(--text-muted); margin-bottom: 20px; }
+    /* Sidebar */
+    .co-sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .bank-card { background: var(--grad-primary); color: white; border-radius: 22px; padding: 28px; }
+    .bank-card-title { font-size: 15px; font-weight: 900; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; color: var(--secondary); }
+    .bank-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .bank-row:last-child { border-bottom: none; }
+    .bank-key { font-size: 11.5px; color: rgba(255,255,255,0.55); font-weight: 700; }
+    .bank-val { font-size: 13.5px; font-weight: 800; color: white; display: flex; align-items: center; gap: 8px; }
+    .copy-btn { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; font-family: var(--font); transition: all 0.2s; }
+    .copy-btn:hover { background: rgba(255,255,255,0.25); color: white; }
+    .summary-card { background: white; border-radius: 22px; padding: 24px; border: 1.5px solid var(--border); box-shadow: var(--shadow-sm); }
+    .summary-title { font-size: 15px; font-weight: 900; color: var(--primary); margin-bottom: 16px; }
+    .summary-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; color: var(--text-muted); }
+    .summary-total { display: flex; justify-content: space-between; font-size: 17px; font-weight: 900; color: var(--primary); padding: 14px 0 0; border-top: 2px solid var(--border); margin-top: 10px; }
+    .submit-btn { background: var(--grad-gold); color: var(--primary-dark); border: none; padding: 16px 28px; border-radius: var(--r-full); font-size: 16px; font-weight: 900; cursor: pointer; transition: all 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; font-family: var(--font); box-shadow: var(--shadow-gold); margin-top: 16px; }
+    .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(244,185,66,0.65); }
+    .steps-bar { display: flex; gap: 0; margin-bottom: 32px; }
+    .step-bar-item { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; }
+    .step-bar-item:not(:last-child)::after { content: ''; position: absolute; top: 15px; left: -50%; width: 100%; height: 2px; background: var(--border); z-index: 0; }
+    .step-bar-item.done:not(:last-child)::after { background: var(--primary-light); }
+    .sb-dot { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--border); background: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; color: var(--text-muted); position: relative; z-index: 1; transition: all 0.3s; }
+    .step-bar-item.active .sb-dot { border-color: var(--primary); background: var(--primary); color: white; }
+    .step-bar-item.done .sb-dot { border-color: var(--primary-light); background: var(--primary-light); color: white; }
+    .sb-label { font-size: 11px; font-weight: 700; color: var(--text-muted); margin-top: 6px; text-align: center; }
+    .step-bar-item.active .sb-label { color: var(--primary); }
+    @media (max-width: 900px) { .checkout-grid { grid-template-columns: 1fr; } .form-grid-2 { grid-template-columns: 1fr; } }
+    @media (max-width: 576px) { .checkout-wrap { padding: 20px 14px 60px; } .co-card { padding: 20px; } }
+  </style>
+</head>
+<body>
+<div id="header-placeholder" data-page=""></div>
+
+<div class="checkout-wrap">
+
+  <!-- STEPS BAR -->
+  <div class="steps-bar reveal">
+    <div class="step-bar-item active">
+      <div class="sb-dot">1</div>
+      <div class="sb-label">سلة الخدمات</div>
+    </div>
+    <div class="step-bar-item active">
+      <div class="sb-dot">2</div>
+      <div class="sb-label">بيانات الطلب</div>
+    </div>
+    <div class="step-bar-item">
+      <div class="sb-dot">3</div>
+      <div class="sb-label">التحويل البنكي</div>
+    </div>
+    <div class="step-bar-item">
+      <div class="sb-dot">4</div>
+      <div class="sb-label">استلام الخدمة</div>
+    </div>
+  </div>
+
+  <div class="checkout-grid">
+    <!-- MAIN -->
+    <div class="checkout-main">
+
+      <!-- CART ITEMS -->
+      <div class="co-card reveal">
+        <div class="co-card-title"><i class="fas fa-shopping-cart" style="color:var(--primary-light);"></i> الخدمات في سلتك</div>
+        <div id="co-cart-body">
+          <!-- Injected by JS -->
+        </div>
+        <a href="specializations.html" style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--primary);margin-top:14px;"><i class="fas fa-plus-circle"></i> إضافة خدمة أخرى</a>
+      </div>
+
+      <!-- PERSONAL INFO -->
+      <div class="co-card reveal">
+        <div class="co-card-title"><i class="fas fa-user-graduate" style="color:var(--primary-light);"></i> بياناتك الدراسية</div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">الاسم الكامل<span>*</span></label>
+              <input type="text" id="co-name" class="form-input" placeholder="مثال: محمد عبدالله الشمري">
+            </div>
+            <div class="form-group">
+              <label class="form-label">رقم واتساب<span>*</span></label>
+              <input type="tel" id="co-phone" class="form-input" placeholder="05XXXXXXXX" dir="ltr">
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">الجامعة / المدرسة<span>*</span></label>
+              <input type="text" id="co-uni" class="form-input" placeholder="مثال: جامعة الملك سعود">
+            </div>
+            <div class="form-group">
+              <label class="form-label">التخصص / القسم</label>
+              <input type="text" id="co-major" class="form-input" placeholder="مثال: علوم الحاسب">
+            </div>
+          </div>
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">المادة الدراسية<span>*</span></label>
+              <input type="text" id="co-subject" class="form-input" placeholder="مثال: إدارة الأعمال 101">
+            </div>
+            <div class="form-group">
+              <label class="form-label">اسم الأستاذ / سكشن</label>
+              <input type="text" id="co-prof" class="form-input" placeholder="مثال: د. أحمد — سكشن 3">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DELIVERY -->
+      <div class="co-card reveal">
+        <div class="co-card-title"><i class="fas fa-calendar-check" style="color:var(--primary-light);"></i> تفاصيل التسليم</div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">آخر موعد للتسليم<span>*</span></label>
+              <input type="date" id="co-deadline" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">عدد الصفحات / الكلمات</label>
+              <input type="text" id="co-pages" class="form-input" placeholder="مثال: 5 صفحات / 1000 كلمة">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">الأولوية المطلوبة</label>
+            <div class="priority-options">
+              <label class="priority-opt selected" id="pri-normal">
+                <input type="radio" name="priority" value="عادي" checked>
+                <div class="p-icon">📅</div>
+                <div class="p-name">عادي</div>
+                <div class="p-price">24-48 ساعة</div>
+              </label>
+              <label class="priority-opt" id="pri-fast">
+                <input type="radio" name="priority" value="سريع">
+                <div class="p-icon">⚡</div>
+                <div class="p-name">سريع</div>
+                <div class="p-price">8-24 ساعة</div>
+              </label>
+              <label class="priority-opt" id="pri-urgent">
+                <input type="radio" name="priority" value="عاجل جداً">
+                <div class="p-icon">🔥</div>
+                <div class="p-name">عاجل جداً</div>
+                <div class="p-price">2-8 ساعات</div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">متطلبات إضافية وملاحظات</label>
+            <textarea id="co-notes" class="form-input" rows="4" placeholder="أي تعليمات خاصة، متطلبات الأستاذ، المستوى الدراسي، أو ملاحظات مهمة..."></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="co-sidebar">
+
+      <!-- ORDER SUMMARY -->
+      <div class="summary-card reveal">
+        <div class="summary-title"><i class="fas fa-receipt"></i> ملخص الطلب</div>
+        <div id="co-summary-items">
+          <!-- Injected -->
+        </div>
+        <div class="summary-total">
+          <span>الإجمالي</span>
+          <span id="co-total-display">0 ريال</span>
+        </div>
+        <div style="font-size:11.5px;color:var(--text-muted);margin-top:8px;padding:10px 12px;background:var(--bg-gray);border-radius:10px;line-height:1.7;">
+          <i class="fas fa-info-circle" style="color:var(--info);"></i> السعر النهائي يُحدَّد عبر واتساب للخدمات المتغيرة
+        </div>
+        <button class="submit-btn" id="co-submit-btn" onclick="submitOrder()">
+          <i class="fab fa-whatsapp"></i> أرسل طلبك عبر واتساب
+        </button>
+      </div>
+
+      <!-- BANK INFO -->
+      <div class="bank-card reveal">
+        <div class="bank-card-title"><i class="fas fa-university"></i> بيانات التحويل البنكي</div>
+        <div class="bank-row">
+          <span class="bank-key">البنك</span>
+          <span class="bank-val">بنك الإنماء</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-key">المستفيد</span>
+          <span class="bank-val" style="font-size:12px;">مؤسسة كريتيفا جلوبال</span>
+        </div>
+        <div class="bank-row">
+          <span class="bank-key">رقم الحساب</span>
+          <span class="bank-val">
+            <span dir="ltr" id="acct-num">68206067557000</span>
+            <button class="copy-btn" onclick="copyText('68206067557000', this)">نسخ</button>
+          </span>
+        </div>
+        <div class="bank-row" style="flex-direction:column;align-items:flex-start;gap:8px;">
+          <span class="bank-key">رقم الآيبان IBAN</span>
+          <div style="display:flex;align-items:center;gap:8px;width:100%;justify-content:space-between;">
+            <span class="bank-val" dir="ltr" style="font-size:12px;" id="iban-num">SA4905000068206067557000</span>
+            <button class="copy-btn" onclick="copyText('SA4905000068206067557000', this)">نسخ</button>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:12px;background:rgba(244,185,66,0.1);border-radius:12px;border:1px solid rgba(244,185,66,0.2);">
+          <div style="font-size:11px;color:#f4b942;font-weight:800;margin-bottom:4px;"><i class="fas fa-lightbulb"></i> تعليمات الدفع</div>
+          <div style="font-size:11.5px;color:rgba(255,255,255,0.7);line-height:1.7;">بعد إرسال الطلب عبر واتساب، حوّل المبلغ المحدد وأرفق صورة إيصال التحويل في نفس المحادثة.</div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div style="background:white;border-radius:18px;padding:22px;border:1.5px solid var(--border);box-shadow:var(--shadow-xs);" class="reveal">
+        <div style="font-size:14px;font-weight:900;color:var(--primary);margin-bottom:14px;"><i class="fas fa-headset"></i> تحتاج مساعدة؟</div>
+        <a href="https://wa.me/966533940866" target="_blank" class="btn btn-wa" style="width:100%;justify-content:center;margin-bottom:10px;"><i class="fab fa-whatsapp"></i> واتساب مباشر</a>
+        <a href="https://t.me/Helping_KSU/2697" target="_blank" class="btn" style="background:#229ed9;color:white;width:100%;justify-content:center;"><i class="fab fa-telegram"></i> قناة تيليجرام</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/site-upgrade.js"></script>
+<script>
+/* ==================== CHECKOUT PAGE ==================== */
+
+const BANK = {
+  bank: 'بنك الإنماء',
+  name: 'مؤسسة كريتيفا جلوبال ات',
+  account: '68206067557000',
+  iban: 'SA4905000068206067557000'
+};
+
+function renderCoCart() {
+  const cart = loadCart();
+  const body = document.getElementById('co-cart-body');
+  const summaryItems = document.getElementById('co-summary-items');
+  const totalDisplay = document.getElementById('co-total-display');
+  if (!body) return;
+
+  if (!cart.length) {
+    body.innerHTML = `
+      <div class="cart-empty-checkout">
+        <div class="ce-icon">🛒</div>
+        <p>سلتك فارغة! أضف خدمات للمتابعة</p>
+        <a href="specializations.html" class="btn btn-primary"><i class="fas fa-layer-group"></i> استعرض التخصصات</a>
+      </div>`;
+    if (summaryItems) summaryItems.innerHTML = '<div style="font-size:13px;color:var(--text-muted);text-align:center;padding:10px;">لا توجد خدمات</div>';
+    if (totalDisplay) totalDisplay.textContent = '0 ريال';
+    return;
+  }
+
+  body.innerHTML = `<div class="cart-items-preview">${cart.map(item => `
+    <div class="cip-item">
+      <div class="cip-emoji">${item.emoji}</div>
+      <div class="cip-info">
+        <div class="cip-name">${item.name}</div>
+        <div class="cip-price">${item.price > 0 ? item.price + ' ريال' : 'يُحدَّد عبر واتساب'}</div>
+      </div>
+      <button class="cip-remove" onclick="removeFromCart('${item.id}');renderCoCart();" title="إزالة"><i class="fas fa-trash-alt"></i></button>
+    </div>
+  `).join('')}</div>`;
+
+  if (summaryItems) {
+    summaryItems.innerHTML = cart.map(item => `
+      <div class="summary-row">
+        <span>${item.emoji} ${item.name}</span>
+        <span>${item.price > 0 ? item.price + ' ريال' : '—'}</span>
+      </div>
+    `).join('');
+  }
+
+  const total = getCartTotal();
+  if (totalDisplay) totalDisplay.textContent = total > 0 ? total + ' ريال' : 'يُحدَّد عبر واتساب';
+}
+
+// Priority selection
+document.querySelectorAll('.priority-opt').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.priority-opt').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+  });
+});
+
+function getPriority() {
+  const sel = document.querySelector('.priority-opt.selected input');
+  return sel ? sel.value : 'عادي';
+}
+
+function submitOrder() {
+  const cart = loadCart();
+  if (!cart.length) {
+    showToast('السلة فارغة! أضف خدمة أولاً', 'error');
+    return;
+  }
+
+  const name = document.getElementById('co-name')?.value.trim();
+  const phone = document.getElementById('co-phone')?.value.trim();
+  const uni = document.getElementById('co-uni')?.value.trim();
+  const major = document.getElementById('co-major')?.value.trim();
+  const subject = document.getElementById('co-subject')?.value.trim();
+  const prof = document.getElementById('co-prof')?.value.trim();
+  const deadline = document.getElementById('co-deadline')?.value;
+  const pages = document.getElementById('co-pages')?.value.trim();
+  const notes = document.getElementById('co-notes')?.value.trim();
+  const priority = getPriority();
+
+  if (!name) { showToast('أدخل اسمك الكامل', 'error'); document.getElementById('co-name')?.focus(); return; }
+  if (!phone) { showToast('أدخل رقم واتساب للتواصل', 'error'); document.getElementById('co-phone')?.focus(); return; }
+  if (!uni) { showToast('أدخل اسم جامعتك أو مدرستك', 'error'); document.getElementById('co-uni')?.focus(); return; }
+  if (!subject) { showToast('أدخل المادة الدراسية', 'error'); document.getElementById('co-subject')?.focus(); return; }
+
+  const total = getCartTotal();
+  const totalText = total > 0 ? `${total} ريال` : 'يُحدَّد بعد المراجعة';
+
+  const servicesText = cart.map((item, i) => `${i + 1}. ${item.emoji} ${item.name} ${item.price > 0 ? '— ' + item.price + ' ريال' : '(يُحدَّد)'}`).join('\n');
+
+  let msg = `🎓 *طلب جديد — منصة سند التعليمية*\n`;
+  msg += `${'─'.repeat(30)}\n\n`;
+  msg += `👤 *الاسم:* ${name}\n`;
+  msg += `📱 *الواتساب:* ${phone}\n`;
+  msg += `🏛️ *الجامعة/المدرسة:* ${uni}\n`;
+  if (major) msg += `📚 *التخصص:* ${major}\n`;
+  msg += `📖 *المادة:* ${subject}\n`;
+  if (prof) msg += `👨‍🏫 *الأستاذ/سكشن:* ${prof}\n`;
+  msg += `\n📋 *الخدمات المطلوبة:*\n${servicesText}\n`;
+  msg += `\n💰 *الإجمالي التقريبي:* ${totalText}\n`;
+  msg += `⚡ *الأولوية:* ${priority}\n`;
+  if (deadline) msg += `📅 *آخر موعد تسليم:* ${deadline}\n`;
+  if (pages) msg += `📄 *الحجم:* ${pages}\n`;
+  if (notes) msg += `\n📝 *ملاحظات:* ${notes}\n`;
+  msg += `\n${'─'.repeat(30)}\n`;
+  msg += `🏦 *بيانات التحويل:*\n`;
+  msg += `البنك: ${BANK.bank}\n`;
+  msg += `الحساب: ${BANK.account}\n`;
+  msg += `الآيبان: ${BANK.iban}\n`;
+  msg += `\n✅ سأرفق إيصال التحويل بعد الدفع`;
+
+  const waURL = `https://wa.me/966533940866?text=${encodeURIComponent(msg)}`;
+  window.open(waURL, '_blank');
+  showToast('✅ تم فتح واتساب! أرسل الرسالة وأرفق إيصال التحويل', 'success');
+}
+
+// INIT
+document.addEventListener('DOMContentLoaded', () => {
+  renderCoCart();
+  // Set min date for deadline
+  const deadlineInput = document.getElementById('co-deadline');
+  if (deadlineInput) {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    deadlineInput.min = tomorrow.toISOString().split('T')[0];
+  }
+});
+</script>
+</body>
+</html>

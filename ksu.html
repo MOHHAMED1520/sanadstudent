@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مشاريع جامعة الملك سعود KSU | منصة سند التعليمية</title>
+  <meta name="description" content="مشاريع جامعة الملك سعود المشتركة بأسعار محددة مسبقاً — CA، Excel، PowerPoint، Access وأكثر">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    .page-hero { background: linear-gradient(145deg, #060e1f 0%, #1a1000 45%, #3d2a00 100%); }
+    .ksu-card { background: white; border-radius: 22px; padding: 30px; border: 1.5px solid #fde68a; box-shadow: 0 4px 20px rgba(234,163,32,0.1); transition: all 0.35s; position: relative; overflow: hidden; }
+    .ksu-card::before { content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 4px; background: var(--grad-gold); }
+    .ksu-card:hover { transform: translateY(-7px); box-shadow: 0 18px 50px rgba(234,163,32,0.25); border-color: var(--secondary); }
+    .ksu-emoji { font-size: 46px; margin-bottom: 14px; display: block; }
+    .ksu-title { font-size: 17px; font-weight: 900; color: var(--primary); margin-bottom: 8px; }
+    .ksu-desc { font-size: 13px; color: var(--text-muted); line-height: 1.75; margin-bottom: 14px; }
+    .ksu-price-box { background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 14px; padding: 16px 18px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+    .ksu-price-label { font-size: 12px; color: #92400e; font-weight: 700; }
+    .ksu-price-value { font-size: 24px; font-weight: 900; color: #92400e; }
+    .ksu-price-value small { font-size: 13px; font-weight: 600; }
+    .price-variants { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+    .pv-btn { padding: 7px 16px; border-radius: 20px; font-size: 12.5px; font-weight: 700; border: 2px solid #fde68a; background: white; color: #92400e; cursor: pointer; transition: all 0.2s; font-family: var(--font); }
+    .pv-btn.selected, .pv-btn:hover { background: var(--grad-gold); color: var(--primary-dark); border-color: transparent; }
+    .ksu-features { list-style: none; margin-bottom: 20px; }
+    .ksu-features li { font-size: 12.5px; color: var(--text-body); padding: 3.5px 0; display: flex; align-items: center; gap: 8px; }
+    .ksu-features li::before { content: '✓'; color: var(--secondary-dark); font-weight: 900; font-size: 13px; flex-shrink: 0; }
+    .btn-add-ksu { background: var(--grad-gold); color: var(--primary-dark); border: none; padding: 11px 24px; border-radius: 30px; font-size: 13.5px; font-weight: 900; cursor: pointer; transition: all 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--font); box-shadow: var(--shadow-gold); }
+    .btn-add-ksu:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(244,185,66,0.55); }
+    .btn-add-ksu.added { background: linear-gradient(135deg,#6b7280,#4b5563); color: white; box-shadow: none; }
+    .ksu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 26px; max-width: 1200px; margin: 0 auto; }
+    .page-hero-inner { max-width: 1200px; margin: 0 auto; padding: 70px 30px 90px; text-align: center; position: relative; z-index: 1; }
+    .page-hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(244,185,66,0.15); border: 1px solid rgba(244,185,66,0.35); color: #fde68a; padding: 7px 20px; border-radius: 30px; font-size: 12.5px; font-weight: 700; margin-bottom: 24px; }
+    .page-hero h1 { font-size: clamp(28px, 4.5vw, 52px); font-weight: 900; color: white; margin-bottom: 16px; line-height: 1.2; }
+    .page-hero h1 span { color: var(--secondary); }
+    .page-hero p { font-size: 16px; color: rgba(255,255,255,0.72); max-width: 580px; margin: 0 auto 36px; line-height: 1.8; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+    .breadcrumb a, .breadcrumb span { font-size: 12.5px; color: rgba(255,255,255,0.55); font-weight: 600; }
+    .breadcrumb a:hover { color: var(--secondary); }
+    .breadcrumb .sep { color: rgba(255,255,255,0.3); }
+    .hero-stats-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+    .h-stat { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 16px 24px; text-align: center; }
+    .h-stat .hs-num { font-size: 26px; font-weight: 900; color: var(--secondary); }
+    .h-stat .hs-label { font-size: 11.5px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+    .ksu-note { background: linear-gradient(135deg,#fef3c7,#fde68a); border-radius: 16px; padding: 20px 24px; margin-bottom: 40px; display: flex; align-items: flex-start; gap: 12px; border: 1px solid rgba(244,185,66,0.4); }
+    .delivery-timeline { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; max-width: 900px; margin: 40px auto 0; }
+    .dt-card { background: white; border-radius: 16px; padding: 20px; text-align: center; border: 1px solid var(--border); box-shadow: var(--shadow-xs); }
+    .dt-icon { font-size: 28px; margin-bottom: 8px; }
+    .dt-label { font-size: 12.5px; font-weight: 800; color: var(--primary); margin-bottom: 4px; }
+    .dt-desc { font-size: 12px; color: var(--text-muted); }
+    @media (max-width: 768px) { .ksu-grid { grid-template-columns: 1fr; } .page-hero-inner { padding: 50px 20px 60px; } }
+  </style>
+</head>
+<body>
+<div id="header-placeholder" data-page="ksu"></div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-bg"><div class="orb orb-1" style="background:#f4b942;"></div><div class="orb orb-2" style="background:#e8a320;"></div><div class="grid-pattern"></div></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">🏠 الرئيسية</a><span class="sep">›</span>
+      <span style="color:var(--secondary);">مشاريع جامعة الملك سعود</span>
+    </div>
+    <div class="page-hero-badge"><span>🎓</span> خاص بطلاب KSU</div>
+    <h1>مشاريع <span>جامعة الملك سعود</span> 🎓</h1>
+    <p>أسعار محددة مسبقًا وشفافة لجميع مشاريع المواد المشتركة في جامعة الملك سعود — تسليم سريع وجودة مضمونة</p>
+    <div class="hero-stats-row">
+      <div class="h-stat"><div class="hs-num">11+</div><div class="hs-label">مشروع بسعر محدد</div></div>
+      <div class="h-stat"><div class="hs-num">+2000</div><div class="hs-label">طالب KSU</div></div>
+      <div class="h-stat"><div class="hs-num">4-48h</div><div class="hs-label">وقت التسليم</div></div>
+      <div class="h-stat"><div class="hs-num">99%</div><div class="hs-label">رضا الطلاب</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- KSU PROJECTS -->
+<section class="section section-alt">
+
+  <div class="ksu-note reveal">
+    <div style="font-size:26px;flex-shrink:0;">💡</div>
+    <div>
+      <div style="font-size:14px;font-weight:900;color:#92400e;margin-bottom:4px;">كيف تطلب مشروع KSU؟</div>
+      <div style="font-size:13px;color:#78350f;line-height:1.7;">اختر المشروع المطلوب → أضفه للسلة → أتمم الطلب وأرفق تفاصيل المادة وسكشن الأستاذ. يُسلَّم المشروع خلال 4-48 ساعة بأعلى جودة.</div>
+    </div>
+  </div>
+
+  <div class="section-header reveal">
+    <div class="section-chip" style="background:rgba(244,185,66,0.12);color:#92400e;border-color:rgba(244,185,66,0.3);">🎓 المشاريع المتاحة</div>
+    <h2 class="section-title">مشاريع KSU بأسعار محددة</h2>
+    <p class="section-subtitle">اختر مشروعك وأضفه للسلة مباشرة — الأسعار شاملة وواضحة مسبقًا</p>
+  </div>
+
+  <div class="ksu-grid">
+
+    <!-- CA English -->
+    <div class="ksu-card reveal reveal-delay-1">
+      <span class="ksu-emoji">🇬🇧</span>
+      <div class="ksu-title">مشروع CA الإنجليزي</div>
+      <div class="ksu-desc">إعداد مشروع Communicative Assignment الإنجليزي وفق متطلبات أستاذك بصياغة أكاديمية احترافية</div>
+      <div class="ksu-price-box">
+        <span class="ksu-price-label">السعر المحدد</span>
+        <span class="ksu-price-value">120 <small>ريال</small></span>
+      </div>
+      <ul class="ksu-features">
+        <li>Academic English Standard</li>
+        <li>Introduction + Body + Conclusion</li>
+        <li>References & Citations</li>
+        <li>تسليم 4-24 ساعة</li>
+      </ul>
+      <button class="btn-add-ksu" id="btn-ksu-ca" onclick="addToCart('ksu-ca','مشروع CA الإنجليزي — KSU',120,'🇬🇧')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة — 120 ريال
+      </button>
+    </div>
+
+    <!-- APA Research -->
+    <div class="ksu-card reveal reveal-delay-2">
+      <span class="ksu-emoji">📑</span>
+      <div class="ksu-title">التكليف البحثي APA</div>
+      <div class="ksu-desc">إعداد التكليف البحثي الأكاديمي وفق معايير APA السابع بتوثيق المراجع الصحيح وصياغة علمية سليمة</div>
+      <div class="ksu-price-box">
+        <span class="ksu-price-label">السعر المحدد</span>
+        <span class="ksu-price-value">50 <small>ريال</small></span>
+      </div>
+      <ul class="ksu-features">
+        <li>توثيق APA 7th Edition</li>
+        <li>مراجع عربية وأجنبية</li>
+        <li>هيكل بحثي سليم</li>
+        <li>تسليم 4-24 ساعة</li>
+      </ul>
+      <button class="btn-add-ksu" id="btn-ksu-apa" onclick="addToCart('ksu-apa','تكليف بحثي APA — KSU',50,'📑')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة — 50 ريال
+      </button>
+    </div>
+
+    <!-- PowerPoint -->
+    <div class="ksu-card reveal reveal-delay-3">
+      <span class="ksu-emoji">🎨</span>
+      <div class="ksu-title">عرض PowerPoint احترافي</div>
+      <div class="ksu-desc">تصميم عرض تقديمي PowerPoint بتصميم بصري احترافي مع المحتوى العلمي المنظم والمراجع</div>
+      <div class="ksu-price-box">
+        <span class="ksu-price-label">السعر المحدد</span>
+        <span class="ksu-price-value">75 <small>ريال</small></span>
+      </div>
+      <ul class="ksu-features">
+        <li>تصميم بصري مميز</li>
+        <li>محتوى منظم ومرتب</li>
+        <li>ملاحظات المقدم</li>
+        <li>تسليم 4-24 ساعة</li>
+      </ul>
+      <button class="btn-add-ksu" id="btn-ksu-ppt" onclick="addToCart('ksu-ppt','عرض PowerPoint — KSU',75,'🎨')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة — 75 ريال
+      </button>
+    </div>
+
+    <!-- Mind Map -->
+    <div class="ksu-card reveal reveal-delay-1">
+      <span class="ksu-emoji">🧠</span>
+      <div class="ksu-title">خريطة ذهنية Mind Map</div>
+      <div class="ksu-desc">تصميم خريطة ذهنية احترافية ومنظمة تناسب المادة والأستاذ بمحتوى دقيق وتصميم مميز</div>
+      <div class="price-variants" id="pv-mindmap">
+        <button class="pv-btn selected" onclick="selectVariant(this,'ksu-mindmap',35,'خريطة ذهنية بسيطة — KSU')">بسيطة — 35 ريال</button>
+        <button class="pv-btn" onclick="selectVariant(this,'ksu-mindmap',50,'خريطة ذهنية متقدمة — KSU')">متقدمة — 50 ريال</button>
+      </div>
+      <ul class="ksu-features">
+        <li>تصميم بصري جذاب</li>
+        <li>محتوى دقيق ومنظم</li>
+        <li>صيغة PDF + PNG</li>
+        <li>تسليم 4-24 ساعة</li>
+      </ul>
+      <button class="btn-add-ksu" id="btn-ksu-mindmap" onclick="addToCartKSU('ksu-mindmap','خريطة ذهنية — KSU',35,'🧠')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة
+      </button>
+    </div>
+
+    <!-- Word Project -->
+    <div class="ksu-card reveal reveal-delay-2">
+      <span class="ksu-emoji">📄</span>
+      <div class="ksu-title">مشروع Word المتكامل</div>
+      <div class="ksu-desc">إعداد مشروع Word الكامل مع جدول المحتويات، الصفحة الرئيسية، الهوامش والتوثيق الأكاديمي</div>
+      <div class="ksu-price-box">
+        <span class="ksu-price-label">السعر المحدد</span>
+        <span class="ksu-price-value">750 <small>ريال</small></span>
+      </div>
+      <ul class="ksu-features">
+        <li>تنسيق وورد احترافي</li>
+        <li>جدول محتويات آلي</li>
+        <li>فهرس المراجع APA</li>
+        <li>تسليم 24-72 ساعة</li>
+      </ul>
+      <button class="btn-add-ksu" id="btn-ksu-word" onclick="addToCart('ksu-word','مشروع Word — KSU',750,'📄')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة — 750 ريال
+      </button>
+    </div>
+
+    <!-- Excel -->
+    <div class="ksu-card reveal reveal-delay-3">
+      <span class="ksu-emoji">📊</span>
+      <div class="ksu-title">مشروع Excel متكامل</div>
+      <div class="ksu-desc">إعداد مشروع Excel بالصيغ والجداول والرسوم البيانية المطلوبة وفق تعليمات المادة والأستاذ</div>
+      <div class="ksu-price-box">
+        <span class="ksu-price-label">السعر المحدد</span>
+        <span class="ksu-price-value">100 <small>ريال</small></span>
+      </div>
+      <ul class="ksu-features">
+        <li>صيغ Excel متقدمة</li>
+        <li>جداول بيانية</li>
+        <li>رسوم بيانية Charts</li>
+        <li>تسليم 4-24 ساعة</li>
+      </ul>
+      <button class="btn-add-ksu" id="btn-ksu-excel" onclick="addToCart('ksu-excel','مشروع Excel — KSU',100,'📊')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة — 100 ريال
+      </button>
+    </div>
+
+    <!-- Access -->
+    <div class="ksu-card reveal reveal-delay-1">
+      <span class="ksu-emoji">🗃️</span>
+      <div class="ksu-title">قاعدة بيانات Access</div>
+      <div class="ksu-desc">إنشاء قاعدة بيانات Access كاملة مع الجداول والعلاقات والاستعلامات والنماذج والتقارير</div>
+      <div class="ksu-price-box">
+        <span class="ksu-price-label">السعر المحدد</span>
+        <span class="ksu-price-value">80 <small>ريال</small></span>
+      </div>
+      <ul class="ksu-features">
+        <li>جداول وعلاقات</li>
+        <li>استعلامات Queries</li>
+        <li>نماذج Forms</li>
+        <li>تقارير Reports</li>
+      </ul>
+      <button class="btn-add-ksu" id="btn-ksu-access" onclick="addToCart('ksu-access','قاعدة بيانات Access — KSU',80,'🗃️')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة — 80 ريال
+      </button>
+    </div>
+
+    <!-- READ Project -->
+    <div class="ksu-card reveal reveal-delay-2">
+      <span class="ksu-emoji">🏆</span>
+      <div class="ksu-title">مشروع الريد READ</div>
+      <div class="ksu-desc">إعداد مشروع الريد الشامل وفق متطلبات المادة بالصياغة الصحيحة والتنسيق الأكاديمي</div>
+      <div class="ksu-price-box">
+        <span class="ksu-price-label">السعر المحدد</span>
+        <span class="ksu-price-value">200 <small>ريال</small></span>
+      </div>
+      <ul class="ksu-features">
+        <li>متطلبات الريد الكاملة</li>
+        <li>توثيق وهيكل صحيح</li>
+        <li>مراجعة وتدقيق</li>
+        <li>تسليم 24-72 ساعة</li>
+      </ul>
+      <button class="btn-add-ksu" id="btn-ksu-read" onclick="addToCart('ksu-read','مشروع الريد — KSU',200,'🏆')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة — 200 ريال
+      </button>
+    </div>
+
+    <!-- Summary / Report -->
+    <div class="ksu-card reveal reveal-delay-3">
+      <span class="ksu-emoji">📝</span>
+      <div class="ksu-title">تلخيص المقرر وتكاليف عامة</div>
+      <div class="ksu-desc">تلخيص الكتب والمقررات الدراسية وحل التكاليف والاختبارات القصيرة لجميع مواد KSU</div>
+      <div class="ksu-price-box">
+        <span class="ksu-price-label">يبدأ من</span>
+        <span class="ksu-price-value">30 <small>ريال</small></span>
+      </div>
+      <ul class="ksu-features">
+        <li>جميع مواد KSU</li>
+        <li>تلخيص منظم ودقيق</li>
+        <li>واجبات وكويزات</li>
+        <li>تسليم سريع</li>
+      </ul>
+      <button class="btn-add-ksu" id="btn-ksu-summary" onclick="addToCart('ksu-summary','تلخيص/تكاليف — KSU',0,'📝')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة
+      </button>
+    </div>
+
+    <!-- Infographic -->
+    <div class="ksu-card reveal reveal-delay-1">
+      <span class="ksu-emoji">🎭</span>
+      <div class="ksu-title">إنفوجرافيك وتصاميم</div>
+      <div class="ksu-desc">تصميم إنفوجرافيك احترافي، بوسترات بحثية، ملصقات تعريفية وتصاميم المشاريع الأكاديمية</div>
+      <div class="ksu-price-box">
+        <span class="ksu-price-label">يبدأ من</span>
+        <span class="ksu-price-value">50 <small>ريال</small></span>
+      </div>
+      <ul class="ksu-features">
+        <li>تصميم احترافي مميز</li>
+        <li>إنفوجرافيك تعليمي</li>
+        <li>بوستر بحثي</li>
+        <li>صيغ متعددة</li>
+      </ul>
+      <button class="btn-add-ksu" id="btn-ksu-infographic" onclick="addToCart('ksu-infographic','إنفوجرافيك — KSU',50,'🎭')">
+        <i class="fas fa-cart-plus"></i> أضف للسلة
+      </button>
+    </div>
+
+    <!-- Custom -->
+    <div class="ksu-card reveal reveal-delay-2" style="background:linear-gradient(135deg,#fef9e7,#fef3c7);">
+      <span class="ksu-emoji">💬</span>
+      <div class="ksu-title">مشروع KSU آخر</div>
+      <div class="ksu-desc">مشروع KSU غير مذكور أعلاه؟ تواصل معنا وسنوفر الخدمة المطلوبة بأسرع وقت</div>
+      <div class="ksu-price-box">
+        <span class="ksu-price-label">يُحدَّد عبر واتساب</span>
+        <span class="ksu-price-value">⚡</span>
+      </div>
+      <ul class="ksu-features">
+        <li>جميع المواد المشتركة</li>
+        <li>سعر تنافسي مناسب</li>
+        <li>رد فوري خلال 30 دقيقة</li>
+        <li>تسليم سريع مضمون</li>
+      </ul>
+      <a href="https://wa.me/966533940866" target="_blank" class="btn-add-ksu" style="text-decoration:none;background:linear-gradient(135deg,#25d366,#1baa52);color:white;box-shadow:0 5px 18px rgba(37,211,102,0.4);">
+        <i class="fab fa-whatsapp"></i> تواصل الآن
+      </a>
+    </div>
+
+  </div>
+
+  <!-- DELIVERY TIMELINE -->
+  <div class="section-header reveal" style="margin-top:60px;">
+    <div class="section-chip" style="background:rgba(244,185,66,0.12);color:#92400e;border-color:rgba(244,185,66,0.3);">⚡ جدول التسليم</div>
+    <h2 class="section-title">أوقات التسليم المتوقعة</h2>
+  </div>
+  <div class="delivery-timeline reveal">
+    <div class="dt-card"><div class="dt-icon">⚡</div><div class="dt-label">4-8 ساعات</div><div class="dt-desc">CA، خريطة ذهنية، تلخيص</div></div>
+    <div class="dt-card"><div class="dt-icon">🔥</div><div class="dt-label">8-24 ساعة</div><div class="dt-desc">APA، PPT، Excel، Access</div></div>
+    <div class="dt-card"><div class="dt-icon">📅</div><div class="dt-label">24-48 ساعة</div><div class="dt-desc">مشروع Word، الريد READ</div></div>
+    <div class="dt-card"><div class="dt-icon">🏆</div><div class="dt-label">مرن</div><div class="dt-desc">مشاريع ضخمة ومتكاملة</div></div>
+  </div>
+</section>
+
+<!-- BANK INFO & CTA -->
+<section class="section" style="background:var(--bg-gray);">
+  <div class="cta-banner reveal" style="max-width:900px;margin:0 auto;">
+    <div style="position:relative;z-index:1;">
+      <div style="font-size:46px;margin-bottom:16px;">🎓</div>
+      <h2>جاهز لطلب مشروعك؟</h2>
+      <p style="color:rgba(255,255,255,0.72);margin-bottom:28px;">أضف المشاريع للسلة وأتمم طلبك — فريقنا يبدأ العمل فورًا!</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="checkout.html" class="btn btn-primary btn-lg"><i class="fas fa-shopping-cart"></i> إتمام الطلب الآن</a>
+        <a href="https://wa.me/966533940866" target="_blank" class="btn btn-wa btn-lg"><i class="fab fa-whatsapp"></i> استفسار واتساب</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script src="js/site-upgrade.js"></script>
+<script>
+// Init default selected variants
+document.addEventListener('DOMContentLoaded', () => {
+  ksuVariants['ksu-mindmap'] = { price: 35, label: 'خريطة ذهنية بسيطة — KSU' };
+});
+</script>
+</body>
+</html>
