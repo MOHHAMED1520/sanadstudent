@@ -1533,7 +1533,7 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 .ai-assistant-btn {
   position: fixed;
   bottom: 102px;
-  right: 28px;
+  left: 28px; right: auto;
   z-index: 998;
   width: 62px; height: 62px;
   background: var(--grad-purple);
@@ -1780,7 +1780,7 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 
 /* ==================== WHATSAPP FLOAT ==================== */
 .wa-float {
-  position: fixed; bottom: 30px; right: 28px;
+  position: fixed; bottom: 30px; left: 28px; right: auto;
   z-index: 997;
   width: 62px; height: 62px;
   background: #25d366;
@@ -2447,8 +2447,8 @@ textarea.form-input { resize: vertical; min-height: 110px; }
   .hero-stats { grid-template-columns: repeat(2, 1fr); }
   .logo-text .l-name { font-size: 15px; }
   .wa-float, .ai-assistant-btn { width: 54px; height: 54px; font-size: 24px; }
-  .wa-float { right: 14px; bottom: 20px; }
-  .ai-assistant-btn { right: 14px; bottom: 86px; }
+  .wa-float { left: 14px; right: auto; bottom: 20px; }
+  .ai-assistant-btn { left: 14px; right: auto; bottom: 86px; }
   .smart-toolbar-row { flex-direction: column; align-items: stretch; }
   .ksu-grid { padding: 0 12px; }
   .checkout-form-body { padding: 18px 14px; }
@@ -2606,3 +2606,70 @@ textarea.form-input { resize: vertical; min-height: 110px; }
 
 /* ==================== TOOL-PANEL anchor hash smooth-scroll offset ==================== */
 :target { scroll-margin-top: 90px; }
+
+/* ==================== SANAD LOGO IMG ==================== */
+.logo-img-main {
+  height: 52px;
+  width: 52px;
+  border-radius: 14px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid rgba(244,185,66,0.4);
+  background: #f4b942;
+  padding: 2px;
+}
+.logo-img-main:hover { opacity: 0.9; }
+
+/* ==================== LEFT SIDE FLOATING (AI + WA) ==================== */
+.ai-chat-window {
+  left: 16px !important;
+  right: auto !important;
+}
+@media (max-width: 480px) {
+  .ai-chat-window { left: 8px !important; right: auto !important; width: calc(100vw - 16px) !important; }
+}
+
+/* ==================== HERO QUICK ACCESS BAR ==================== */
+.hero-quick-bar {
+  display: flex;
+  gap: 12px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hq-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: white;
+  min-width: 140px;
+  transition: all 0.3s var(--ease-bounce);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  position: relative;
+  overflow: hidden;
+}
+.hq-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.08);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.hq-btn:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 14px 36px rgba(0,0,0,0.25); }
+.hq-btn:hover::before { opacity: 1; }
+.hq-btn i { font-size: 22px; margin-bottom: 2px; }
+.hq-label { font-size: 13.5px; font-weight: 800; line-height: 1.2; }
+.hq-sub { font-size: 11px; opacity: 0.82; font-weight: 500; }
+.hq-tools { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+.hq-spec  { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+.hq-ksu   { background: linear-gradient(135deg, #f59e0b, #d97706); color: #1a2a0a; }
+.hq-order { background: linear-gradient(135deg, #10b981, #059669); }
+@media (max-width: 600px) {
+  .hero-quick-bar { gap: 10px; }
+  .hq-btn { min-width: calc(50% - 6px); padding: 12px 14px; }
+}

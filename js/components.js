@@ -17,7 +17,8 @@ function renderHeader(activePage = '') {
     </div>
     <div class="header-main">
       <a href="index.html" class="logo-wrap" title="منصة سند التعليمية">
-        <div class="logo-icon">📚</div>
+        <img src="images/sanad-logo.png" alt="شعار منصة سند التعليمية" class="logo-img-main" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="logo-icon" style="display:none">📚</div>
         <div class="logo-text">
           <span class="l-name">سند التعليمية</span>
           <span class="l-sub">أكاديميتك الرقمية المتكاملة 🎓</span>
@@ -87,7 +88,7 @@ function renderFooter() {
     <div class="footer-grid">
       <div class="footer-brand-col">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-          <div style="width:52px;height:52px;background:linear-gradient(135deg,#f4b942,#e8a320);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;">📚</div>
+          <img src="images/sanad-logo.png" alt="سند التعليمية" style="width:52px;height:52px;border-radius:14px;object-fit:cover;flex-shrink:0;background:#f4b942;" onerror="this.outerHTML='<div style=\'width:52px;height:52px;background:linear-gradient(135deg,#f4b942,#e8a320);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;\'>📚</div>';">
           <div>
             <div style="font-size:18px;font-weight:900;color:#f4b942;line-height:1.2;">منصة سند التعليمية</div>
             <div style="font-size:11.5px;color:rgba(255,255,255,0.55);">أكاديميتك الرقمية المتكاملة</div>

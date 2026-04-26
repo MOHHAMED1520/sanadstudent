@@ -10,7 +10,9 @@
 }
 
 /* ===== Global floating actions ===== */
-.site-floating-actions {
+/* RIGHT side: share / fav / top */
+.site-floating-actions,
+.site-floating-actions-right {
   position: fixed;
   right: 18px;
   bottom: 20px;
@@ -785,7 +787,8 @@
 }
 @media (max-width: 768px) {
   .smart-toolbar { padding: 14px; border-radius: 18px; }
-  .site-floating-actions { right: 14px; bottom: 14px; }
+  .site-floating-actions,
+  .site-floating-actions-right { right: 14px; bottom: 14px; }
   .site-floating-btn { width: 48px; height: 48px; border-radius: 16px; }
   .share-strip { padding: 20px; }
   .upgrade-section { padding: 54px 18px; }

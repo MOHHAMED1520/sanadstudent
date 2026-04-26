@@ -475,22 +475,24 @@
   }
 
   function injectFloatingActions() {
-    if (document.querySelector('.site-floating-actions')) return;
-    const wrap = document.createElement('div');
-    wrap.className = 'site-floating-actions';
+    if (document.querySelector('.site-floating-actions-right')) return;
+
+    /* ── RIGHT SIDE: مشاركة | مفضلة | أعلى الصفحة ── */
+    const rightWrap = document.createElement('div');
+    rightWrap.className = 'site-floating-actions site-floating-actions-right';
 
     const shareBtn = createMiniButton('site-floating-btn share', 'fas fa-share-nodes', '', () => window.shareCurrentPage());
-    const favBtn = createMiniButton('site-floating-btn fav', 'fas fa-heart', '', openFavoritesDrawer);
-    const topBtn = createMiniButton('site-floating-btn top', 'fas fa-arrow-up', '', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    const favBtn   = createMiniButton('site-floating-btn fav',   'fas fa-heart',       '', openFavoritesDrawer);
+    const topBtn   = createMiniButton('site-floating-btn top',   'fas fa-arrow-up',    '', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     shareBtn.title = 'مشاركة';
-    favBtn.title = 'المفضلة';
-    topBtn.title = 'أعلى الصفحة';
+    favBtn.title   = 'المفضلة';
+    topBtn.title   = 'أعلى الصفحة';
 
-    wrap.appendChild(shareBtn);
-    wrap.appendChild(favBtn);
-    wrap.appendChild(topBtn);
-    document.body.appendChild(wrap);
+    rightWrap.appendChild(shareBtn);
+    rightWrap.appendChild(favBtn);
+    rightWrap.appendChild(topBtn);
+    document.body.appendChild(rightWrap);
   }
 
   function injectHomeSections() {
