@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="التخصصات الجامعية في منصة سند - خدمات أكاديمية لكل تخصص: علوم حاسب، هندسة برمجيات، نظم معلومات وأكثر">
+  <title>التخصصات | منصة سند التعليمية</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-badge"><i class="fas fa-graduation-cap"></i> التخصصات</div>
+      <h1>خدمات لكل تخصص جامعي</h1>
+      <p>نقدم خدمات أكاديمية متخصصة لطلاب جميع الأقسام والكليات الجامعية</p>
+
+      <!-- Filter Bar -->
+      <div class="spec-filter-bar" id="spec-filter-bar">
+        <button class="spec-filter-btn active" onclick="filterSpecs(this,'all')">الكل</button>
+        <button class="spec-filter-btn" onclick="filterSpecs(this,'cs')">علوم حاسب</button>
+        <button class="spec-filter-btn" onclick="filterSpecs(this,'eng')">الهندسة</button>
+        <button class="spec-filter-btn" onclick="filterSpecs(this,'business')">الأعمال</button>
+        <button class="spec-filter-btn" onclick="filterSpecs(this,'other')">أخرى</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIALIZATIONS GRID -->
+  <div class="container">
+    <div class="specs-grid" id="specs-grid">
+
+      <!-- CS -->
+      <div class="spec-card" data-cat="cs">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#1e3a8a,#2563eb)">💻</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">علوم الحاسب</div>
+          <div class="spec-card-desc">خدمات شاملة لطلاب قسم علوم الحاسب من مشاريع برمجية ومواد نظرية وعملية</div>
+          <div class="spec-card-tags">
+            <span>CS 424</span><span>CS 484</span><span>CS 485</span>
+            <span>خوارزميات</span><span>قواعد بيانات</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20علوم%20الحاسب" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+      <!-- SE -->
+      <div class="spec-card" data-cat="cs">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#7c3aed,#5b21b6)">⚙️</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">هندسة البرمجيات</div>
+          <div class="spec-card-desc">مشاريع هندسة البرمجيات، التحليل والتصميم، SDLC، UML والمزيد</div>
+          <div class="spec-card-tags">
+            <span>UML</span><span>SDLC</span><span>Agile</span>
+            <span>مشاريع التخرج</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20هندسة%20البرمجيات" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+      <!-- IS -->
+      <div class="spec-card" data-cat="cs">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#0891b2,#0e7490)">🗃️</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">نظم المعلومات الإدارية</div>
+          <div class="spec-card-desc">خدمات نظم المعلومات: قواعد البيانات، تحليل الأعمال، ERP، BI</div>
+          <div class="spec-card-tags">
+            <span>MIS</span><span>ERP</span><span>SQL</span>
+            <span>تحليل أعمال</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20نظم%20المعلومات" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+      <!-- CE -->
+      <div class="spec-card" data-cat="eng">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#d97706,#b45309)">🔧</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">هندسة الحاسب</div>
+          <div class="spec-card-desc">مشاريع هندسة الحاسب: معالجات، دوائر، أنظمة مدمجة، VHDL</div>
+          <div class="spec-card-tags">
+            <span>VHDL</span><span>Verilog</span><span>Embedded</span>
+            <span>دوائر منطقية</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20هندسة%20الحاسب" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+      <!-- Cybersecurity -->
+      <div class="spec-card" data-cat="cs">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#dc2626,#b91c1c)">🛡️</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">الأمن السيبراني</div>
+          <div class="spec-card-desc">مشاريع وبحوث الأمن السيبراني: اختبار الاختراق، التشفير، الشبكات الآمنة</div>
+          <div class="spec-card-tags">
+            <span>Cybersecurity</span><span>Network Security</span>
+            <span>Penetration Testing</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20الأمن%20السيبراني" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+      <!-- AI/DS -->
+      <div class="spec-card" data-cat="cs">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#7c3aed,#2563eb)">🤖</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">الذكاء الاصطناعي</div>
+          <div class="spec-card-desc">مشاريع AI وData Science: تعلم الآلة، معالجة اللغة، رؤية حاسوبية</div>
+          <div class="spec-card-tags">
+            <span>Machine Learning</span><span>Python</span>
+            <span>Deep Learning</span><span>NLP</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20الذكاء%20الاصطناعي" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+      <!-- Business -->
+      <div class="spec-card" data-cat="business">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#059669,#047857)">📈</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">إدارة الأعمال</div>
+          <div class="spec-card-desc">خطط أعمال، تقارير إدارية، تحليل SWOT، دراسات جدوى</div>
+          <div class="spec-card-tags">
+            <span>خطط أعمال</span><span>SWOT</span>
+            <span>دراسة جدوى</span><span>تسويق</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20إدارة%20الأعمال" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+      <!-- Finance -->
+      <div class="spec-card" data-cat="business">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#0284c7,#0369a1)">💹</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">المالية والمحاسبة</div>
+          <div class="spec-card-desc">تقارير مالية، تحليل قوائم مالية، محاسبة إدارية وتكاليف</div>
+          <div class="spec-card-tags">
+            <span>تحليل مالي</span><span>محاسبة</span>
+            <span>Excel</span><span>تقارير</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20المالية%20والمحاسبة" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+      <!-- Networks -->
+      <div class="spec-card" data-cat="eng">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#0284c7,#7c3aed)">🌐</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">الشبكات والاتصالات</div>
+          <div class="spec-card-desc">مشاريع الشبكات: Cisco, TCP/IP، بروتوكولات الاتصال، Wireshark</div>
+          <div class="spec-card-tags">
+            <span>Cisco</span><span>TCP/IP</span>
+            <span>Network Design</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20الشبكات" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+      <!-- Media/Design -->
+      <div class="spec-card" data-cat="other">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#ec4899,#db2777)">🎨</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">الإعلام والتصميم</div>
+          <div class="spec-card-desc">مشاريع إعلامية، تصميم جرافيك، تصوير، مونتاج، بحوث إعلامية</div>
+          <div class="spec-card-tags">
+            <span>Graphic Design</span><span>إعلام</span>
+            <span>تصوير</span><span>مونتاج</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20الإعلام%20والتصميم" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+      <!-- English -->
+      <div class="spec-card" data-cat="other">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#16a34a,#15803d)">📖</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">اللغة الإنجليزية</div>
+          <div class="spec-card-desc">مقالات، Essays، تقارير، ترجمة، تصحيح لغوي لجميع المستويات</div>
+          <div class="spec-card-tags">
+            <span>Essay Writing</span><span>Translation</span>
+            <span>Proofreading</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20اللغة%20الإنجليزية" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+      <!-- Math/Stats -->
+      <div class="spec-card" data-cat="other">
+        <div class="spec-card-banner" style="background:linear-gradient(135deg,#d97706,#f59e0b)">📐</div>
+        <div class="spec-card-body">
+          <div class="spec-card-name">الرياضيات والإحصاء</div>
+          <div class="spec-card-desc">حل مسائل رياضية، تحليل إحصائي، SPSS، واجبات رياضيات</div>
+          <div class="spec-card-tags">
+            <span>SPSS</span><span>R</span><span>إحصاء</span>
+            <span>حسبان</span>
+          </div>
+          <a href="https://wa.me/966533940866?text=أريد%20خدمات%20تخصص%20الرياضيات" target="_blank" class="btn-spec">
+            <i class="fab fa-whatsapp"></i> طلب الخدمة
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <section class="cta-section" style="margin-top:0">
+    <div class="container">
+      <h2>لم تجد تخصصك؟ 🎓</h2>
+      <p>تواصل معنا وسنساعدك في أي تخصص أو مادة جامعية</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/966533940866" target="_blank" rel="noopener" class="btn-primary" style="text-decoration:none">
+          <i class="fab fa-whatsapp"></i> تواصل معنا الآن
+        </a>
+        <a href="index.html#services" class="btn-secondary" style="text-decoration:none">
+          <i class="fas fa-briefcase"></i> استعرض الخدمات
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/site-upgrade.js"></script>
+  <script>
+    function filterSpecs(btn, cat) {
+      document.querySelectorAll('.spec-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.spec-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.style.display = '';
+          card.style.animation = 'fadeIn 0.3s ease';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

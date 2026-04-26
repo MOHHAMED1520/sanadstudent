@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="أدوات مجانية لطلاب الجامعة - حاسبة GPA، تحويل الصور لـ PDF، توليد المراجع APA، ومزيد">
+  <title>الأدوات المجانية | منصة سند التعليمية</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/upgrade.css">
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-hero-badge"><i class="fas fa-tools"></i> أدوات مجانية</div>
+      <h1>أدوات أكاديمية مجانية</h1>
+      <p>مجموعة أدوات احترافية بدون تسجيل أو دفع — استخدمها الآن!</p>
+    </div>
+  </section>
+
+  <!-- TOOLS SHELL -->
+  <div class="tools-shell">
+
+    <!-- Sidebar -->
+    <aside class="tools-sidebar">
+      <h3><i class="fas fa-list"></i> الفئات</h3>
+      <button class="tool-cat-btn active" onclick="filterTools(this,'all')">
+        <i class="fas fa-th"></i> جميع الأدوات
+      </button>
+      <button class="tool-cat-btn" onclick="filterTools(this,'gpa')">
+        <i class="fas fa-calculator"></i> الحسابات
+      </button>
+      <button class="tool-cat-btn" onclick="filterTools(this,'docs')">
+        <i class="fas fa-file-alt"></i> المستندات
+      </button>
+      <button class="tool-cat-btn" onclick="filterTools(this,'text')">
+        <i class="fas fa-font"></i> النصوص
+      </button>
+      <button class="tool-cat-btn" onclick="filterTools(this,'convert')">
+        <i class="fas fa-exchange-alt"></i> التحويل
+      </button>
+
+      <div style="margin-top:24px;padding:16px;background:linear-gradient(135deg,rgba(37,99,235,0.08),rgba(244,185,66,0.08));border-radius:14px;border:1px solid rgba(37,99,235,0.1)">
+        <div style="font-size:0.82rem;font-weight:700;color:var(--primary);margin-bottom:8px">
+          <i class="fas fa-robot"></i> هل تحتاج مساعدة؟
+        </div>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:12px;line-height:1.5">
+          فريقنا جاهز لمساعدتك في أي وقت
+        </p>
+        <a href="https://wa.me/966533940866" target="_blank"
+           style="display:flex;align-items:center;gap:6px;padding:9px 14px;background:#25D366;color:white;border-radius:10px;font-size:0.8rem;font-weight:700;text-decoration:none;justify-content:center">
+          <i class="fab fa-whatsapp"></i> تواصل الآن
+        </a>
+      </div>
+    </aside>
+
+    <!-- Tools Panel -->
+    <main class="tools-panel" id="tools-main">
+
+      <!-- GPA Calculator -->
+      <div class="tool-card" id="gpa" data-cat="gpa">
+        <div class="tool-card-icon">📊</div>
+        <h3>حاسبة المعدل التراكمي GPA</h3>
+        <p>احسب معدلك الفصلي والتراكمي بدقة وفق نظام 4 أو 5</p>
+        <div class="tool-card-area">
+          <div id="gpa-rows">
+            <div class="gpa-row">
+              <input type="text" placeholder="اسم المادة" class="gpa-name">
+              <input type="number" placeholder="الساعات" min="1" max="6" class="gpa-hours">
+              <select class="gpa-grade">
+                <option value="">الدرجة</option>
+                <option value="4.0">A+ (ممتاز+)</option>
+                <option value="4.0">A (ممتاز)</option>
+                <option value="3.75">A- (ممتاز-)</option>
+                <option value="3.5">B+ (جيد جداً+)</option>
+                <option value="3.0">B (جيد جداً)</option>
+                <option value="2.75">B- (جيد جداً-)</option>
+                <option value="2.5">C+ (جيد+)</option>
+                <option value="2.0">C (جيد)</option>
+                <option value="1.75">C- (جيد-)</option>
+                <option value="1.5">D+ (مقبول+)</option>
+                <option value="1.0">D (مقبول)</option>
+                <option value="0">F (راسب)</option>
+              </select>
+              <button class="btn-remove-row" onclick="removeGPARow(this)"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:10px">
+            <button class="tool-btn" style="flex:1;background:var(--border-light);color:var(--text)" onclick="addGPARow()">
+              <i class="fas fa-plus"></i> إضافة مادة
+            </button>
+            <button class="tool-btn" style="flex:1" onclick="calcGPA()">
+              <i class="fas fa-calculator"></i> احسب GPA
+            </button>
+          </div>
+          <div class="tool-result" id="gpa-result"></div>
+        </div>
+      </div>
+
+      <!-- Grade Converter -->
+      <div class="tool-card" id="convert" data-cat="convert">
+        <div class="tool-card-icon">🔄</div>
+        <h3>محول الدرجات</h3>
+        <p>حوّل بين النسبة المئوية والنقاط والحروف بسهولة</p>
+        <div class="tool-card-area">
+          <label>أدخل النسبة المئوية أو GPA:</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+            <div>
+              <label>النسبة (%)</label>
+              <input type="number" id="grade-pct" placeholder="مثال: 85" min="0" max="100">
+            </div>
+            <div>
+              <label>GPA (من 4)</label>
+              <input type="number" id="grade-gpa" placeholder="مثال: 3.5" min="0" max="4" step="0.01">
+            </div>
+          </div>
+          <button class="tool-btn" onclick="convertGrade()">
+            <i class="fas fa-exchange-alt"></i> تحويل الدرجة
+          </button>
+          <div class="tool-result" id="grade-result"></div>
+        </div>
+      </div>
+
+      <!-- APA Reference Generator -->
+      <div class="tool-card" id="cite" data-cat="docs">
+        <div class="tool-card-icon">📚</div>
+        <h3>مولّد المراجع APA</h3>
+        <p>أنشئ مراجع بصيغة APA 7th تلقائياً وانسخها بنقرة</p>
+        <div class="tool-card-area">
+          <label>نوع المرجع:</label>
+          <select id="ref-type" onchange="toggleRefFields()" style="margin-bottom:8px">
+            <option value="book">كتاب</option>
+            <option value="journal">مقالة مجلة</option>
+            <option value="website">موقع إلكتروني</option>
+          </select>
+          <label>اسم المؤلف / الكاتب:</label>
+          <input type="text" id="ref-author" placeholder="الاسم الأخير، الاسم الأول">
+          <label>عنوان العمل:</label>
+          <input type="text" id="ref-title" placeholder="عنوان الكتاب أو المقالة">
+          <label>سنة النشر:</label>
+          <input type="number" id="ref-year" placeholder="مثال: 2023" min="1900" max="2030">
+          <div id="ref-extra-fields">
+            <label>دار النشر / اسم الناشر:</label>
+            <input type="text" id="ref-publisher" placeholder="دار النشر">
+          </div>
+          <button class="tool-btn" onclick="generateAPA()">
+            <i class="fas fa-quote-right"></i> توليد المرجع APA
+          </button>
+          <div class="tool-result" id="apa-result" style="direction:ltr;text-align:left"></div>
+        </div>
+      </div>
+
+      <!-- Word Counter -->
+      <div class="tool-card" id="words" data-cat="text">
+        <div class="tool-card-icon">📝</div>
+        <h3>عداد الكلمات والأحرف</h3>
+        <p>احسب عدد الكلمات والأحرف والجمل في نصك</p>
+        <div class="tool-card-area">
+          <textarea id="word-count-text" placeholder="الصق نصك هنا..." rows="5"
+            oninput="countWords()" style="resize:vertical;min-height:100px"></textarea>
+          <div class="tool-result show" id="word-result" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center;padding:12px">
+            <div><div id="wc-words" style="font-size:1.5rem;font-weight:800;color:var(--primary)">0</div><div style="font-size:0.75rem;color:var(--text-muted)">كلمة</div></div>
+            <div><div id="wc-chars" style="font-size:1.5rem;font-weight:800;color:var(--accent)">0</div><div style="font-size:0.75rem;color:var(--text-muted)">حرف</div></div>
+            <div><div id="wc-sents" style="font-size:1.5rem;font-weight:800;color:var(--success)">0</div><div style="font-size:0.75rem;color:var(--text-muted)">جملة</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text Reverser / Tools -->
+      <div class="tool-card" id="texttools" data-cat="text">
+        <div class="tool-card-icon">🔤</div>
+        <h3>أدوات النصوص</h3>
+        <p>تحويل حالة النص، إزالة المسافات الزائدة، ونسخ النص</p>
+        <div class="tool-card-area">
+          <textarea id="text-tool-input" placeholder="أدخل النص هنا..." rows="4" style="resize:vertical"></textarea>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0">
+            <button class="tool-btn" style="font-size:0.8rem" onclick="transformText('upper')">حروف كبيرة</button>
+            <button class="tool-btn" style="font-size:0.8rem" onclick="transformText('lower')">حروف صغيرة</button>
+            <button class="tool-btn" style="font-size:0.8rem" onclick="transformText('trim')">إزالة المسافات</button>
+            <button class="tool-btn" style="font-size:0.8rem" onclick="transformText('copy')">نسخ النص</button>
+          </div>
+          <div class="tool-result" id="text-tool-result"></div>
+        </div>
+      </div>
+
+      <!-- Reading Time -->
+      <div class="tool-card" id="readtime" data-cat="text">
+        <div class="tool-card-icon">⏱️</div>
+        <h3>حاسبة وقت القراءة</h3>
+        <p>احسب الوقت المقدر لقراءة أي نص</p>
+        <div class="tool-card-area">
+          <textarea id="readtime-text" placeholder="الصق نصك هنا لحساب وقت قراءته..." rows="4" style="resize:vertical"></textarea>
+          <button class="tool-btn" onclick="calcReadTime()">
+            <i class="fas fa-clock"></i> احسب وقت القراءة
+          </button>
+          <div class="tool-result" id="readtime-result"></div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/site-upgrade.js"></script>
+  <script>
+    /* ==================== TOOLS LOGIC ==================== */
+
+    // Filter tools by category
+    function filterTools(btn, cat) {
+      document.querySelectorAll('.tool-cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.tool-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // GPA Calculator
+    function addGPARow() {
+      const row = document.createElement('div');
+      row.className = 'gpa-row';
+      row.innerHTML = `
+        <input type="text" placeholder="اسم المادة" class="gpa-name">
+        <input type="number" placeholder="الساعات" min="1" max="6" class="gpa-hours">
+        <select class="gpa-grade">
+          <option value="">الدرجة</option>
+          <option value="4.0">A+ / A (ممتاز)</option>
+          <option value="3.75">A- (ممتاز-)</option>
+          <option value="3.5">B+ (جيد جداً+)</option>
+          <option value="3.0">B (جيد جداً)</option>
+          <option value="2.75">B- (جيد جداً-)</option>
+          <option value="2.5">C+ (جيد+)</option>
+          <option value="2.0">C (جيد)</option>
+          <option value="1.75">C- (جيد-)</option>
+          <option value="1.5">D+ (مقبول+)</option>
+          <option value="1.0">D (مقبول)</option>
+          <option value="0">F (راسب)</option>
+        </select>
+        <button class="btn-remove-row" onclick="removeGPARow(this)"><i class="fas fa-times"></i></button>
+      `;
+      document.getElementById('gpa-rows').appendChild(row);
+    }
+    function removeGPARow(btn) {
+      const rows = document.querySelectorAll('#gpa-rows .gpa-row');
+      if (rows.length > 1) btn.closest('.gpa-row').remove();
+    }
+    function calcGPA() {
+      const rows = document.querySelectorAll('#gpa-rows .gpa-row');
+      let totalPoints = 0, totalHours = 0;
+      let valid = true;
+      rows.forEach(row => {
+        const hours = parseFloat(row.querySelector('.gpa-hours')?.value);
+        const grade = parseFloat(row.querySelector('.gpa-grade')?.value);
+        if (!isNaN(hours) && !isNaN(grade) && hours > 0) {
+          totalPoints += hours * grade;
+          totalHours += hours;
+        } else if (row.querySelector('.gpa-hours')?.value || row.querySelector('.gpa-grade')?.value !== '') {
+          valid = false;
+        }
+      });
+      const result = document.getElementById('gpa-result');
+      if (totalHours === 0) {
+        result.innerHTML = '<span style="color:var(--danger)">أدخل بيانات المواد أولاً</span>';
+        result.classList.add('show');
+        return;
+      }
+      const gpa = (totalPoints / totalHours).toFixed(2);
+      const letter = gpa >= 3.75 ? 'ممتاز (A)' : gpa >= 3.0 ? 'جيد جداً (B)' : gpa >= 2.0 ? 'جيد (C)' : gpa >= 1.0 ? 'مقبول (D)' : 'راسب (F)';
+      result.innerHTML = `
+        <div style="text-align:center">
+          <div style="font-size:2.5rem;font-weight:800;color:var(--primary)">${gpa}</div>
+          <div style="font-size:0.9rem;color:var(--text-muted);margin-top:4px">${letter}</div>
+          <div style="font-size:0.8rem;color:var(--text-light);margin-top:4px">إجمالي الساعات: ${totalHours}</div>
+        </div>
+      `;
+      result.classList.add('show');
+    }
+
+    // Grade Converter
+    function convertGrade() {
+      const pct = parseFloat(document.getElementById('grade-pct')?.value);
+      const gpa = parseFloat(document.getElementById('grade-gpa')?.value);
+      const result = document.getElementById('grade-result');
+      let html = '';
+      if (!isNaN(pct)) {
+        const g = pct >= 95 ? '4.0 (A+)' : pct >= 90 ? '4.0 (A)' : pct >= 85 ? '3.75 (A-)' : pct >= 80 ? '3.5 (B+)' : pct >= 75 ? '3.0 (B)' : pct >= 70 ? '2.75 (B-)' : pct >= 65 ? '2.5 (C+)' : pct >= 60 ? '2.0 (C)' : pct >= 55 ? '1.75 (C-)' : pct >= 50 ? '1.5 (D+)' : 'F (راسب)';
+        html += `<div><strong>النسبة ${pct}% = GPA: </strong>${g}</div>`;
+      }
+      if (!isNaN(gpa)) {
+        const p = gpa >= 3.75 ? '95%+' : gpa >= 3.5 ? '85-94%' : gpa >= 3.0 ? '80-84%' : gpa >= 2.5 ? '70-79%' : gpa >= 2.0 ? '65-69%' : gpa >= 1.0 ? '50-64%' : 'أقل من 50%';
+        html += `<div><strong>GPA ${gpa} ≈ </strong>${p}</div>`;
+      }
+      if (!html) html = '<span style="color:var(--danger)">أدخل قيمة للتحويل</span>';
+      result.innerHTML = html;
+      result.classList.add('show');
+    }
+
+    // APA Generator
+    function toggleRefFields() {
+      const type = document.getElementById('ref-type').value;
+      const extra = document.getElementById('ref-extra-fields');
+      if (type === 'website') {
+        extra.innerHTML = '<label>URL الموقع:</label><input type="text" id="ref-publisher" placeholder="https://example.com">';
+      } else if (type === 'journal') {
+        extra.innerHTML = '<label>اسم المجلة:</label><input type="text" id="ref-publisher" placeholder="اسم المجلة"><label>المجلد والعدد:</label><input type="text" id="ref-volume" placeholder="مثال: 10(2), 45-67">';
+      } else {
+        extra.innerHTML = '<label>دار النشر:</label><input type="text" id="ref-publisher" placeholder="دار النشر">';
+      }
+    }
+    function generateAPA() {
+      const author = document.getElementById('ref-author')?.value?.trim() || 'غير محدد';
+      const title  = document.getElementById('ref-title')?.value?.trim()  || 'غير محدد';
+      const year   = document.getElementById('ref-year')?.value?.trim()   || 'n.d.';
+      const pub    = document.getElementById('ref-publisher')?.value?.trim() || '';
+      const type   = document.getElementById('ref-type')?.value;
+      let apa = '';
+      if (type === 'book') {
+        apa = `${author} (${year}). <em>${title}</em>. ${pub}.`;
+      } else if (type === 'journal') {
+        const vol = document.getElementById('ref-volume')?.value?.trim() || '';
+        apa = `${author} (${year}). ${title}. <em>${pub}, ${vol}</em>.`;
+      } else {
+        apa = `${author} (${year}). <em>${title}</em>. ${pub}`;
+      }
+      const result = document.getElementById('apa-result');
+      result.innerHTML = `<div style="margin-bottom:8px">${apa}</div>
+        <button onclick="navigator.clipboard.writeText(document.getElementById('apa-result').innerText).then(()=>showToast('تم نسخ المرجع ✓'))"
+          style="background:var(--primary);color:white;border:none;padding:6px 14px;border-radius:8px;cursor:pointer;font-size:0.78rem">
+          <i class="fas fa-copy"></i> نسخ المرجع
+        </button>`;
+      result.classList.add('show');
+    }
+
+    // Word Counter
+    function countWords() {
+      const text = document.getElementById('word-count-text')?.value || '';
+      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      const chars = text.length;
+      const sents = text.split(/[.!?؟]+/).filter(s => s.trim()).length;
+      document.getElementById('wc-words').textContent = words;
+      document.getElementById('wc-chars').textContent = chars;
+      document.getElementById('wc-sents').textContent = sents;
+    }
+
+    // Text Tools
+    function transformText(type) {
+      const input = document.getElementById('text-tool-input')?.value || '';
+      const result = document.getElementById('text-tool-result');
+      let output = '';
+      if (type === 'upper') output = input.toUpperCase();
+      else if (type === 'lower') output = input.toLowerCase();
+      else if (type === 'trim') output = input.replace(/\s+/g, ' ').trim();
+      else if (type === 'copy') {
+        navigator.clipboard.writeText(input).then(() => showToast('تم نسخ النص ✓'));
+        return;
+      }
+      result.textContent = output;
+      result.classList.add('show');
+    }
+
+    // Reading Time
+    function calcReadTime() {
+      const text = document.getElementById('readtime-text')?.value || '';
+      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      const wpm = 200; // average Arabic reading speed
+      const mins = Math.ceil(words / wpm);
+      const result = document.getElementById('readtime-result');
+      result.innerHTML = `
+        <div style="text-align:center">
+          <span style="font-size:2rem;font-weight:800;color:var(--primary)">${mins}</span>
+          <span style="font-size:0.9rem;color:var(--text-muted)"> دقيقة</span><br>
+          <span style="font-size:0.78rem;color:var(--text-light)">(${words} كلمة)</span>
+        </div>
+      `;
+      result.classList.add('show');
+    }
+  </script>
+</body>
+</html>
