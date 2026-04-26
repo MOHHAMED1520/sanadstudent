@@ -415,3 +415,18 @@
   }
 
 })();
+
+/* ==================== RECENT VIEWS TRACKER ==================== */
+// Track recently viewed services for personalization
+(function() {
+  const RECENT_KEY = 'sanad_recent_2026';
+  window.trackRecentView = function(id, name, emoji) {
+    try {
+      let recent = JSON.parse(localStorage.getItem(RECENT_KEY) || '[]');
+      recent = recent.filter(r => r.id !== id);
+      recent.unshift({ id, name, emoji, ts: Date.now() });
+      if (recent.length > 5) recent = recent.slice(0, 5);
+      localStorage.setItem(RECENT_KEY, JSON.stringify(recent));
+    } catch(e) {}
+  };
+})();
